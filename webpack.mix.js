@@ -17,7 +17,7 @@ mix
     open: false,
     reloadDelay: 3000,
     files: [
-      'templates/**/*',
+      'templates/**/*.html.twig',
       'src/**/*.js',
       'src/**/*.css',
     ]

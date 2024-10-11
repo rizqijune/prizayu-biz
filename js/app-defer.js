@@ -29,6 +29,24 @@ window.onscroll = function () {
     navbarSocial.style.display = 'block';
   }
 };
+document.addEventListener('DOMContentLoaded', function () {
+  // Toggle TOC
+  // const toggleButton = document.getElementById('toc-toggle');
+  // const toc = document.getElementById('toc');
+
+  // Initial state
+  // toc.classList.add('toc-visible');
+
+  // toggleButton.addEventListener('click', () => {
+  //     if (toc.classList.contains('toc-visible')) {
+  //         toc.classList.remove('toc-visible');
+  //         toc.classList.add('hidden');
+  //     } else {
+  //         toc.classList.remove('hidden');
+  //         toc.classList.add('toc-visible');
+  //     }
+  // });
+});
 
 /***/ })
 

@@ -16,10 +16,26 @@ license: MIT
 
 dependencies:
 - {name: grav, version: '>=1.7.0'}
+- langswitcher
+- taxonomylist
+- error
+- problems
+- breadcrumbs
+- readingtime
+- page-toc
 
 form:
   validation: loose
   fields:
+    plugins:
+      type: list
+      label: 'Plugins'
+      fields:
+        .:
+          type: toggle
+          label: 'Enable Page TOC'
+          default: true
+          highlight: 1
     logo:
       type: file
       label: Logo

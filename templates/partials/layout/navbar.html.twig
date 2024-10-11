@@ -37,7 +37,7 @@
 
     <div class="h-16 bg-red-400 shadow-md">
         <nav class="flex items-center justify-between w-full h-full py-2 content">
-            {% include 'partials/logo.html.twig' with {'class' : 'h-full'} %}
+            {% include 'partials/components/logo.html.twig' with {'class' : 'h-full'} %}
 
             <div class="flex items-center space-x-4">
                 {% for page in pages.children.visible %}
@@ -47,6 +47,7 @@
                     </a>
 
                 {% endfor %}
+                <button id="toggle-dark-mode">Toggle Dark Mode</button>
             </div>
         </nav>
     </div>

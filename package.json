@@ -10,9 +10,10 @@
     "on": "export YARN_ENABLE_OFFLINE_MODE=0 && yarn mix watch -- --watch-options-poll=1000",
     "prod": "mix --production"
   },
-  "author": "Sven +",
+  "author": "rizqijune",
   "license": "MIT",
   "dependencies": {
+    "nightwind": "^1.1.13",
     "photoswipe": "^5.4.4"
   },
   "devDependencies": {
@@ -21,6 +22,8 @@
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@babel/plugin-transform-runtime": "^7.25.7",
     "@babel/preset-env": "^7.25.7",
+    "@iconify/tailwind": "^1.1.3",
+    "@tailwindcss/typography": "^0.5.15",
     "autoprefixer": "^10.4.20",
     "browser-sync": "^3.0.3",
     "browser-sync-webpack-plugin": "https://github.com/Va1/browser-sync-webpack-plugin.git",
