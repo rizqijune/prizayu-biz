@@ -1,0 +1,39 @@
+{
+  "name": "prizayu-biz",
+  "version": "1.0.0",
+  "description": "A commercial version's theme from Prizayu (A tailwindcss GRAV Theme).",
+  "main": "",
+  "scripts": {
+    "watch": "mix watch -- --watch-options-poll=1000",
+    "dev": "mix",
+    "off": "export YARN_ENABLE_OFFLINE_MODE=1 && yarn mix watch -- --watch-options-poll=1000",
+    "on": "export YARN_ENABLE_OFFLINE_MODE=0 && yarn mix watch -- --watch-options-poll=1000",
+    "prod": "mix --production"
+  },
+  "author": "Sven +",
+  "license": "MIT",
+  "dependencies": {
+    "photoswipe": "^5.4.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.7",
+    "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.25.7",
+    "@babel/preset-env": "^7.25.7",
+    "autoprefixer": "^10.4.20",
+    "browser-sync": "^3.0.3",
+    "browser-sync-webpack-plugin": "https://github.com/Va1/browser-sync-webpack-plugin.git",
+    "laravel-mix": "^6.0.49",
+    "postcss": "^8.4.47",
+    "postcss-cli": "^10.1.0",
+    "tailwindcss": "^3.4.13",
+    "webpack": "^5.60.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-livereload-plugin": "^3.0.2"
+  },
+  "volta": {
+    "node": "20.18.0",
+    "yarn": "4.5.0"
+  }
+}
