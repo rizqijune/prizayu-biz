@@ -1,45 +1,53 @@
 {% extends 'partials/base.html.twig' %}
 
 {% block content %}
-<div class="container px-4 py-8 mx-auto">
-{# TOC UI #}
-<div class="fixed flex">
-{# Toggle #}
-    <input type="checkbox" id="toc-toggle" class="relative sr-only peer" checked>
-    <label for="toc-toggle" class="fixed inline-block p-4 transition-all duration-500 rounded-full shadow-2xl left-2 bg-primary top-1/2 peer-checked:rotate-180 peer-checked:left-64">
-        <div class="w-6 h-1 mb-3 bg-white rounded-lg"></div>
-        <div class="w-6 h-1 bg-white rounded-lg"></div>
-    </label>
-    {# TOC Content#}
-    <div class="fixed left-0 z-20 w-64 transition-all duration-500 transform -translate-x-full rounded-l-none shadow-2xl bg-stone-50 rounded-xl top-1/2 peer-checked:translate-x-0">
-      <div class="px-6 py-4">
-        <h2 class="text-lg font-semibold text-center border-2 rounded-xl">Drawer</h2>
-        {% include 'partials/components/page-toc.html.twig' %}
-      </div>
-    </div>
-{# TOC Content#}
-  </div>
-{# TOC UI #}
-    <div class="flex flex-col lg:flex-row group">
-        <!-- Main Content -->
-        <article class="w-full p-6 border-2 rounded-lg mt-14 lg:w-3/4">
-        <figure>
-        <img
-    alt=""
-    src="https://images.unsplash.com/photo-1631451095765-2c91616fc9e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-    class="h-56 w-full rounded-xl object-cover shadow-xl transition group-hover:grayscale-[50%]"
-  />
-  </figure>
-        
-            <header>
-                <h1 class="mb-4 text-4xl font-bold text-gray-800">{{ page.title }}</h1>
-                <p class="mb-6 text-gray-600">{{ page.date|date("F j, Y") }}</p>
-            </header>
-
-            <div class="prose">
-                {{ page.content|raw }}
+    <div class="container px-4 py-8 mx-auto">
+        {# TOC UI #}
+        <div class="fixed flex">
+            {# Toggle #}
+            <input type="checkbox"
+                id="toc-toggle"
+                class="relative sr-only peer"
+                checked />
+            <label for="toc-toggle"
+                class="fixed inline-block p-4 transition-all duration-500 rounded-full shadow-2xl left-2 bg-primary top-1/2 peer-checked:rotate-180 peer-checked:left-64">
+                <div class="w-6 h-1 mb-3 bg-white rounded-lg"></div>
+                <div class="w-6 h-1 bg-white rounded-lg"></div>
+            </label>
+            {# TOC Content #}
+            <div class="fixed left-0 z-20 w-64 transition-all duration-500 transform -translate-x-full rounded-l-none shadow-2xl bg-stone-50 rounded-xl top-1/2 peer-checked:translate-x-0">
+                <div class="px-6 py-4">
+                    <h2 class="text-lg font-semibold text-center border-2 rounded-xl">
+                        Drawer
+                    </h2>
+                    {% include 'partials/components/page-toc.html.twig' %}
+                </div>
             </div>
-        </article>
+            {# TOC Content #}
+        </div>
+        {# TOC UI #}
+        <div class="flex flex-col lg:flex-row group">
+            <!-- Main Content -->
+            <article class="w-full p-6 border-2 rounded-lg mt-14 lg:w-3/4">
+                <figure>
+                    <img alt=""
+                        src="https://images.unsplash.com/photo-1631451095765-2c91616fc9e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                        class="h-56 w-full rounded-xl object-cover shadow-xl transition group-hover:grayscale-[50%]" />
+                </figure>
+
+                <header>
+                    <h1 class="mb-4 text-4xl font-bold text-gray-800">
+                        {{ page.title }}
+                    </h1>
+                    <p class="mb-6 text-gray-600">
+                        {{ page.date|date('F j, Y') }}
+                    </p>
+                </header>
+
+                <div class="prose">
+                    {{ page.content|raw }}
+                </div>
+            </article>
+        </div>
     </div>
-</div>
-{% endblock %}
+{% endblock content %}

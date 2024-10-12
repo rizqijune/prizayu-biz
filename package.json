@@ -24,12 +24,14 @@
     "@babel/preset-env": "^7.25.7",
     "@iconify/tailwind": "^1.1.3",
     "@tailwindcss/typography": "^0.5.15",
+    "@zackad/prettier-plugin-twig": "^0.9.1",
     "autoprefixer": "^10.4.20",
     "browser-sync": "^3.0.3",
     "browser-sync-webpack-plugin": "https://github.com/Va1/browser-sync-webpack-plugin.git",
     "laravel-mix": "^6.0.49",
     "postcss": "^8.4.47",
     "postcss-cli": "^10.1.0",
+    "prettier": "^3.3.3",
     "tailwindcss": "^3.4.13",
     "webpack": "^5.60.0",
     "webpack-cli": "^4.9.1",
@@ -38,5 +40,13 @@
   "volta": {
     "node": "20.18.0",
     "yarn": "4.5.0"
+  },
+  "dependenciesMeta": {
+    "@zackad/prettier-plugin-twig@0.9.1": {
+      "unplugged": true
+    },
+    "prettier@3.3.3": {
+      "unplugged": true
+    }
   }
 }
