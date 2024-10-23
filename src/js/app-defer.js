@@ -1,5 +1,7 @@
 import PhotoSwipeLightbox from 'photoswipe/lightbox';
 import 'photoswipe/style.css';
+import Alpine from 'alpinejs';
+import focus from '@alpinejs/focus'
 
 const lightbox = new PhotoSwipeLightbox({
   gallery: '#gallery--getting-started',
@@ -8,17 +10,10 @@ const lightbox = new PhotoSwipeLightbox({
 });
 
 lightbox.init();
+window.Alpine = Alpine
+Alpine.plugin(focus)
+Alpine.start()
 
-const navbarSocial = document.getElementById('navbar-social');
-console.log(navbarSocial)
-window.onscroll = () => {
-  if (window.scrollY > 500) {
-    navbarSocial.style.display = 'none';
-
-  }else{
-    navbarSocial.style.display = 'block';
-  }
-};
 
 document.addEventListener('DOMContentLoaded', () => {
   // Toggle TOC
@@ -37,5 +32,15 @@ document.addEventListener('DOMContentLoaded', () => {
   //         toc.classList.add('toc-visible');
   //     }
   // });
+//   const navbarSocial = document.getElementById('navbar-social');
+// console.log(navbarSocial)
+// window.onscroll = () => {
+//   if (window.scrollY > 500) {
+//     navbarSocial.style.display = 'none';
+
+//   }else{
+//     navbarSocial.style.display = 'block';
+//   }
+// };
 });
 

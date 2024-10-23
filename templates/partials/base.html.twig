@@ -29,7 +29,7 @@
     {{ assets.js()|raw }}
 {% endblock %}
 </head>
-<body class="h-full {{ page.header.body_classes|e }} bg-stone-50 text-stone-900">
+<body class="h-full {{ page.header.body_classes|e }} bg-neutral-100 text-black">
 
 {% block header %}
 
@@ -38,11 +38,11 @@
 {% endblock %}
 
 {% block body %}
-    <section class="pt-16">
-        <div class="wrapper padding">
+    <main class="pt-16">
+        <section>
         {% block content %}{% endblock %}
-        </div>
-    </section>
+        </section>
+    </main>
 {% endblock %}
 
 {% block footer %}

@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @import "base";
+}
+
+@layer utilities {
+  .has-transition {
+    transition-property: all;
+    transition-duration: 400ms;
+    transition-timing-function: ease;
+  }
+  .link-stretched::after {
+    @apply absolute top-0 right-0 bottom-0 left-0 z-[1] content-[""];
+  }
+  .no-scrollbar {
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+  }
+  .menu {
+    @apply scale-y-0 transition-all duration-[400ms] select-none;
+  
+    ul {
+      @apply mx-auto my-10 text-3xl w-fit font-primary;
+      & > li {
+        @apply scale-95 opacity-0;
+        
+        span a, label {
+          @apply block py-3;
+        }
+  
+        span, label {
+          @apply transition-all duration-300;
+        }
+  
+        label input {
+          & + span {
+            @apply flex items-center justify-center cursor-pointer gap-x-2;
+            
+            svg {
+              @apply transition-transform duration-200;
+            }
+  
+            & + div {
+              @apply flex flex-col overflow-hidden transition-all max-h-0;
+  
+              a {
+                @apply block text-xl transition-all duration-300 py-[6px];
+              }
+  
+              &:hover a:not(:hover) {
+                @apply opacity-35;
+              }
+            }
+          }
+        }
+      }
+      &:hover {
+        li label:not(:hover),
+        li span:not(:hover) {
+          @apply opacity-35;
+        }
+  
+        li label:not(:hover) span {
+          @apply opacity-100;
+        }
+      }
+    }
+  
+    input:checked + .submenuname > svg {
+      @apply rotate-180;
+    }
+    input:checked ~ .submenu {
+      @apply max-h-[--maxHeight];
+    }
+  }
+  .isOpen {
+    @apply scale-y-100 shadow-2xl;
+  
+    ul > li {
+      transition: .3s ease-out;
+      @apply scale-100 translate-y-0 opacity-100;
+      @for $i from 1 through 9 {
+        &:nth-child(#{$i}) {
+          transition-delay: 10 + $i * 50ms;
+        }
+      }
+  
+      & > span, & > label {
+        text-decoration-color: transparent;
+      }
+  
+      & > span.active,
+      & > label.active > span, 
+      & > label a.active,
+      & > span:hover,
+      & > label:hover > span, 
+      & > label a:hover {
+        text-decoration-color: inherit;
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 4px;
+      }
+      & > label a.active,
+      & > label a:hover {
+        text-decoration-thickness: 1px;
+      }
+      span.active a,
+      a.active {
+        cursor: text !important;
+      }
+  
+      label:hover span {
+        opacity: 1 !important;
+      }
+    }
+  }
+  .postBg {
+    background: linear-gradient(180deg, #415649 0%, rgba(65, 86, 73, 0.95) 21.14%, rgba(65, 86, 73, 0.91) 44.02%, rgba(65, 86, 73, 0.9) 100%), url('/images/home-2/home-2-banner.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .darkBg, .darkBgTwo {
+    background-image: url('http://localhost/images/dark-bg.webp');
+    background-size: contain;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-color: black;
+  }
+  .darkBgTwo {
+    background-image: url('http://localhost/images/dark-bg-2.webp');
+  }
+  .waveBg {
+    background: url('http://localhost/images/wave-bg.webp');
+    background-size: 100%;
+    background-position: top center;
+    background-color: #415649;
+  }
+  .dotBg {
+    background: radial-gradient(circle at 1px 1px, rgba(#415649, .25) 1px, transparent 0);
+    background-size: 20px 20px;
+    background-position: center;
+  }
+  .newsletterBlock {
+    @apply relative z-10 px-4 py-7 sm:p-10 sm:pb-8;
+    &::before {
+      @apply rounded-xl rounded-bl-none absolute content-[''] w-full h-[calc(100%_-_70px)] bg-border rounded-t-xl top-0 left-0 -z-10;
+    }
+    &::after {
+      @apply absolute content-[''] w-[calc(100%_-_70px)] h-[100px] bg-border rounded-b-xl left-0 bottom-0 -z-10;
+    }
+  }
+}
+
+@layer components {
+  @import "components";
+  @import "button";
+  @import "post";
+}

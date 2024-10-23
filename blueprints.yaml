@@ -66,3 +66,24 @@ form:
     location:
       type: text
       label: Company location
+    post:
+      type: fieldset
+      collapsible: true
+      collapsed: true
+      icon: header
+      title: Post
+      active: 1
+      fields:
+        post.list.style:
+          type: select
+          label: Listing Style
+          options:
+            list: List View
+            grid: Grid View
+            both: User preference (Both)
+          default: both
+        post.subtitle.text:
+          type: text
+          label: Subtitle
+          placeholder: Input your subtitle of post-list page here
+          default: Check out our latest posts, reviews, and guides.
