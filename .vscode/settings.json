@@ -57,5 +57,8 @@
     "**/.svn/**",
     "**/.yarn/**"
   ],
-  "tailwindcss-intellisense.trace.server": "messages"
+  "tailwindcss-intellisense.trace.server": "messages",
+  "prettier.configPath": ".prettierrc.js",
+  "prettier.bracketSameLine": true,
+  "prettier.requireConfig": true
 }

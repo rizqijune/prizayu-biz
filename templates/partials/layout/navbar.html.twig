@@ -1,24 +1,83 @@
 <nav x-data="{ mobileMenuIsOpen: false, isVisible: true, lastScrollY: 0 }"
-     @scroll.window="if (window.scrollY > lastScrollY && window.scrollY > 100) { isVisible = false } else { isVisible = true; } lastScrollY = window.scrollY"
-     :class="{'translate-y-0': isVisible, '-translate-y-full': !isVisible}"
-     class="fixed top-0 left-0 right-0 z-20 flex items-center justify-between w-full p-4 transition-transform duration-300 ease-in-out bg-white bg-opacity-80 backdrop-blur-md"
-    aria-label="penguin ui menu">
-    <!-- Brand Logo -->
-    {% if uri.path == '/blog' %}
-        <a href="{{ base_url }}/blog"
-            class="text-2xl font-bold text-neutral-900">
-            <span>Peng<span class="text-black">ui</span>n</span>
-        </a>
-    {% else %}
-        <a href="{{ home_url }}"
-            class="text-2xl font-bold text-neutral-900">
-            <span>Peng<span class="text-black ">ui</span>n</span>
-        </a>
-    {% endif %}
-    <!-- End Brand Logo -->
+    @scroll.window="if (window.scrollY > lastScrollY && window.scrollY > 100) { isVisible = false } else { isVisible = true; } lastScrollY = window.scrollY"
+    :class="{'translate-y-0': isVisible, '-translate-y-full': !isVisible}"
+    class="bg-opacity-80 backdrop-blur-md fixed top-0 left-0 right-0 z-20 flex items-center justify-between w-full p-4 transition-transform duration-300 ease-in-out bg-white"
+    aria-label="menu">
+    <div x-data="{ open: false }">
+        <!-- Search Bar -->
+        <div class="md:hidden h-14 flex items-center justify-between w-full p-2 bg-white">
+            <div>
+                <!-- Brand Logo -->
+                {% if uri.path == '/blog' %}
+                    <a href="{{ base_url }}/blog"
+                        class="text-neutral-900 hover:bg-gray-100 p-2 mr-1 text-2xl font-bold rounded-full cursor-pointer">
+                        <span>Peng<span class="text-black">ui</span>n</span>
+                    </a>
+                {% else %}
+                    <a href="{{ home_url }}"
+                        class="text-neutral-900 hover:bg-gray-100 p-2 mr-1 text-2xl font-bold rounded-full cursor-pointer">
+                        <span>Peng<span class="text-black">ui</span>n</span>
+                    </a>
+                {% endif %}
+                <!-- End Brand Logo -->
+            </div>
+            <button @click="open = true"
+                class="focus:outline-none focus:shadow-outline lg:text-sm bg-neutral-100 shrink w-full min-w-full py-4 pl-4 text-xs font-bold leading-tight text-left text-gray-700 uppercase rounded-full">
+                Search
+            </button>
+        </div>
+
+        <div class="md:block hidden">
+            <button @click="open = true"
+                class="hover:bg-primary hover:text-white px-2 py-2 text-black rounded-full">
+                <svg class="w-6 h-6"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                        clip-rule="evenodd" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Full-Screen Modal -->
+        <div x-show="open"
+            class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75"
+            @click.outside="open = false">
+            <div class="md:w-1/2 lg:w-1/3 w-full h-full p-6 bg-white rounded-lg">
+                <h2 class="mb-4 text-lg font-semibold">
+                    Search Categories
+                </h2>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-4 py-1 text-blue-800 bg-blue-200 rounded-full">
+                        Category 1
+                    </span>
+                    <span class="px-4 py-1 text-blue-800 bg-blue-200 rounded-full">
+                        Category 2
+                    </span>
+                    <span class="px-4 py-1 text-blue-800 bg-blue-200 rounded-full">
+                        Category 3
+                    </span>
+                    <span class="px-4 py-1 text-blue-800 bg-blue-200 rounded-full">
+                        Category 4
+                    </span>
+                    <span class="px-4 py-1 text-blue-800 bg-blue-200 rounded-full">
+                        Category 5
+                    </span>
+                </div>
+                <div class="mt-4">
+                    <button @click="open = false"
+                        class="px-4 py-2 text-gray-700 bg-gray-300 rounded-lg">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Search -->
-    <div class="relative flex flex-col w-full gap-1 mr-auto max-w-64 text-neutral-600 dark:text-neutral-300">
+    {# <div class="max-w-64 text-neutral-600 dark:text-neutral-300 relative flex flex-col w-full gap-1 ml-3 mr-auto">
         <svg xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -35,37 +94,39 @@
             placeholder="Search"
             aria-label="search"
             class="w-full rounded-md border border-neutral-300 bg-neutral-50 py-2.5 pl-10 pr-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white" />
-    </div> <!-- End Search -->
+    </div> <!-- End Search --> #}
 
     <!-- Desktop Menu -->
-    <ul class="items-center flex-shrink-0 hidden gap-4 sm:flex">
+    <ul class="sm:flex items-center flex-shrink-0 hidden gap-4">
         {% for page in pages.children.visible %}
             <li>
                 <a href="{{ page.url }}"
-                    class="font-bold text-black underline-offset-2 hover:text-primary focus:outline-none focus:underline"
+                    class="underline-offset-2 hover:text-primary focus:outline-none focus:underline font-bold text-black"
                     aria-current="page">
                     {{ page.menu }}
                 </a>
             </li>
         {% endfor %}
-     <li>
-  <button 
-    id="dark-mode"
-    class="flex items-center justify-center w-8 h-8 text-center transition duration-300 rounded-full focus:outline-none">
-    
-    <div id="icon-container" class="grid w-10 h-10">
-      <svg id="dark-icon" class="hidden w-6 h-6 place-self-center fill-yellow-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-        <path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"/>
-      </svg>
+        <li>
+            <button id="dark-mode"
+                class="focus:outline-none flex items-center justify-center w-8 h-8 text-center transition duration-300 rounded-full">
+                <div id="icon-container" class="grid w-10 h-10">
+                    <svg id="dark-icon"
+                        class="place-self-center fill-yellow-600 hidden w-6 h-6"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 512 512">
+                        <path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z" />
+                    </svg>
 
-      <svg id="light-icon" class="hidden w-6 h-6 place-self-center fill-yellow-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-        <path d="M256 0c-13.3 0-24 10.7-24 24V88c0 13.3 10.7 24 24 24s24-10.7 24-24V24c0-13.3-10.7-24-24-24zm0 400c-13.3 0-24 10.7-24 24v64c0 13.3 10.7 24 24 24s24-10.7 24-24V424c0-13.3-10.7-24-24-24zM488 280c13.3 0 24-10.7 24-24s-10.7-24-24-24H424c-13.3 0-24 10.7-24 24s10.7 24 24 24h64zM112 256c0-13.3-10.7-24-24-24H24c-13.3 0-24 10.7-24 24s10.7 24 24 24H88c13.3 0 24-10.7 24-24zM437 108.9c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-45.3 45.3c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0L437 108.9zM154.2 357.8c-9.4-9.4-24.6-9.4-33.9 0L75 403.1c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l45.3-45.3c9.4-9.4 9.4-24.6 0-33.9zM403.1 437c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-45.3-45.3c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9L403.1 437zM154.2 154.2c9.4-9.4 9.4-24.6 0-33.9L108.9 75c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l45.3 45.3c9.4 9.4 24.6 9.4 33.9 0zM256 368a112 112 0 1 0 0-224 112 112 0 1 0 0 224z"/>
-      </svg>
-    </div>
-  </button>
-</li>
-
-
+                    <svg id="light-icon"
+                        class="place-self-center fill-yellow-600 hidden w-6 h-6"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 512 512">
+                        <path d="M256 0c-13.3 0-24 10.7-24 24V88c0 13.3 10.7 24 24 24s24-10.7 24-24V24c0-13.3-10.7-24-24-24zm0 400c-13.3 0-24 10.7-24 24v64c0 13.3 10.7 24 24 24s24-10.7 24-24V424c0-13.3-10.7-24-24-24zM488 280c13.3 0 24-10.7 24-24s-10.7-24-24-24H424c-13.3 0-24 10.7-24 24s10.7 24 24 24h64zM112 256c0-13.3-10.7-24-24-24H24c-13.3 0-24 10.7-24 24s10.7 24 24 24H88c13.3 0 24-10.7 24-24zM437 108.9c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-45.3 45.3c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0L437 108.9zM154.2 357.8c-9.4-9.4-24.6-9.4-33.9 0L75 403.1c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l45.3-45.3c9.4-9.4 9.4-24.6 0-33.9zM403.1 437c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-45.3-45.3c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9L403.1 437zM154.2 154.2c9.4-9.4 9.4-24.6 0-33.9L108.9 75c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l45.3 45.3c9.4 9.4 24.6 9.4 33.9 0zM256 368a112 112 0 1 0 0-224 112 112 0 1 0 0 224z" />
+                    </svg>
+                </div>
+            </button>
+        </li>
 
         <!-- User Pic -->
         <li x-data="{ userDropDownIsOpen: false, openWithKeyboard: false }"
@@ -76,11 +137,11 @@
                 @keydown.space.prevent="openWithKeyboard = true"
                 @keydown.enter.prevent="openWithKeyboard = true"
                 @keydown.down.prevent="openWithKeyboard = true"
-                class="rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white"
+                class="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white rounded-full"
                 aria-controls="userMenu">
                 <img src="https://penguinui.s3.amazonaws.com/component-assets/avatar-8.webp"
                     alt="User Profile"
-                    class="object-cover rounded-full size-10" />
+                    class="size-10 object-cover rounded-full" />
             </button>
             <!-- User Dropdown -->
             <ul x-cloak
@@ -92,37 +153,37 @@
                 @keydown.up.prevent="$focus.wrap().previous()"
                 id="userMenu"
                 class="absolute right-0 top-12 flex w-full min-w-[12rem] flex-col overflow-hidden rounded-md border border-neutral-300 bg-neutral-50 py-1.5 dark:border-neutral-700 dark:bg-neutral-900">
-                <li class="border-b border-neutral-300 dark:border-neutral-700">
+                <li class="border-neutral-300 dark:border-neutral-700 border-b">
                     <div class="flex flex-col px-4 py-2">
-                        <span class="text-sm font-medium text-neutral-900 dark:text-white">
+                        <span class="text-neutral-900 dark:text-white text-sm font-medium">
                             Alice Brown
                         </span>
-                        <p class="text-xs text-neutral-600 dark:text-neutral-300">
+                        <p class="text-neutral-600 dark:text-neutral-300 text-xs">
                             alice.brown@gmail.com
                         </p>
                     </div>
                 </li>
                 <li>
                     <a href="#"
-                        class="block px-4 py-2 text-sm bg-neutral-50 text-neutral-600 hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white">
+                        class="bg-neutral-50 text-neutral-600 hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white block px-4 py-2 text-sm">
                         Dashboard
                     </a>
                 </li>
                 <li>
                     <a href="#"
-                        class="block px-4 py-2 text-sm bg-neutral-50 text-neutral-600 hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white">
+                        class="bg-neutral-50 text-neutral-600 hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white block px-4 py-2 text-sm">
                         Subscription
                     </a>
                 </li>
                 <li>
                     <a href="#"
-                        class="block px-4 py-2 text-sm bg-neutral-50 text-neutral-600 hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white">
+                        class="bg-neutral-50 text-neutral-600 hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white block px-4 py-2 text-sm">
                         Settings
                     </a>
                 </li>
                 <li>
                     <a href="#"
-                        class="block px-4 py-2 text-sm bg-neutral-50 text-neutral-600 hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white">
+                        class="bg-neutral-50 text-neutral-600 hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white block px-4 py-2 text-sm">
                         Sign Out
                     </a>
                 </li>
@@ -135,7 +196,7 @@
         :aria-expanded="mobileMenuIsOpen"
         :class="mobileMenuIsOpen ? 'fixed top-6 right-6 z-20' : null"
         type="button"
-        class="flex text-neutral-600 dark:text-neutral-300 sm:hidden"
+        class="text-neutral-600 dark:text-neutral-300 sm:hidden flex"
         aria-label="mobile menu"
         aria-controls="mobileMenu">
         <svg x-cloak
@@ -174,7 +235,7 @@
             <div x-show="mobileMenuIsOpen"
                 x-transition.opacity.duration.600ms
                 @click="mobileMenuIsOpen = false"
-                class="fixed inset-0 bg-black bg-opacity-10"></div>
+                class="bg-opacity-10 fixed inset-0 bg-black"></div>
             <div class="fixed inset-0 overflow-hidden">
                 <div class="absolute inset-0 overflow-hidden">
                     <div class="fixed inset-y-0 right-0 flex max-w-full pl-10">
@@ -187,8 +248,8 @@
                             x-transition:leave-start="translate-x-0"
                             x-transition:leave-end="translate-x-full"
                             class="w-screen max-w-md">
-                            <div class="flex flex-col h-full py-5 overflow-y-scroll bg-white border-l shadow-lg border-neutral-100/70">
-                                <div class="px-4 sm:px-5">
+                            <div class="border-neutral-100/70 flex flex-col h-full py-5 overflow-y-scroll bg-white border-l shadow-lg">
+                                <div class="sm:px-5 px-4">
                                     <div class="flex items-start justify-between pb-1">
                                         <h2 class="text-base font-semibold leading-6 text-gray-900"
                                             id="slide-over-title">
@@ -196,7 +257,7 @@
                                         </h2>
                                         <div class="flex items-center h-auto ml-3">
                                             <button @click="mobileMenuIsOpen=false"
-                                                class="absolute top-0 right-0 z-30 flex items-center justify-center px-3 py-2 mt-4 mr-5 space-x-1 text-xs font-medium uppercase border rounded-md border-neutral-200 text-neutral-600 hover:bg-neutral-100">
+                                                class="border-neutral-200 text-neutral-600 hover:bg-neutral-100 absolute top-0 right-0 z-30 flex items-center justify-center px-3 py-2 mt-4 mr-5 space-x-1 text-xs font-medium uppercase border rounded-md">
                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                     fill="none"
                                                     viewBox="0 0 24 24"
@@ -212,9 +273,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="relative flex-1 px-4 mt-5 sm:px-5">
-                                    <div class="absolute inset-0 px-4 sm:px-5">
-                                        <div class="relative h-full overflow-hidden border border-dashed rounded-md border-neutral-300">
+                                <div class="sm:px-5 relative flex-1 px-4 mt-5">
+                                    <div class="sm:px-5 absolute inset-0 px-4">
+                                        <div class="border-neutral-300 relative h-full overflow-hidden border border-dashed rounded-md">
                                             <!-- Content can be added here -->
                                         </div>
                                     </div>

@@ -81,11 +81,11 @@ document.addEventListener("DOMContentLoaded", () => {
         // Update the SVG fill colors
         if (svgDark1) {
             svgDark1.classList.toggle("fill-neutral-100", !isDarkmode);
-            svgDark1.classList.toggle("fill-neutral-900", isDarkmode);
+            svgDark1.classList.toggle("fill-[#262626d9]", isDarkmode);
         }
         if (svgDark2) {
             svgDark2.classList.toggle("fill-neutral-100", !isDarkmode);
-            svgDark2.classList.toggle("fill-neutral-900", isDarkmode);
+            svgDark2.classList.toggle("fill-[#262626d9]", isDarkmode);
         }
     
         // Toggle nightwind mode (if applicable)
@@ -98,20 +98,20 @@ document.addEventListener("DOMContentLoaded", () => {
         darkIcon.classList.remove("hidden");
         if (svgDark1) {
             svgDark1.classList.remove("fill-neutral-100");
-            svgDark1.classList.add("fill-neutral-900");
+            svgDark1.classList.add("fill-[#262626d9]");
         }
         if (svgDark2) {
             svgDark2.classList.remove("fill-neutral-100");
-            svgDark2.classList.add("fill-neutral-900");
+            svgDark2.classList.add("fill-[#262626d9]");
         }
     } else {
         lightIcon.classList.remove("hidden");
         if (svgDark1) {
-            svgDark1.classList.remove("fill-neutral-900");
+            svgDark1.classList.remove("fill-[#262626d9]");
             svgDark1.classList.add("fill-neutral-100");
         }
         if (svgDark2) {
-            svgDark2.classList.remove("fill-neutral-900");
+            svgDark2.classList.remove("fill-[#262626d9]");
             svgDark2.classList.add("fill-neutral-100");
         }
     }

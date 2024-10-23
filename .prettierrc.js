@@ -18,5 +18,5 @@ module.exports = {
     "if,endif",
     "raw,endraw"
   ],
-  plugins: [require.resolve("@zackad/prettier-plugin-twig")]
+  plugins: [require.resolve("@zackad/prettier-plugin-twig"), require.resolve("prettier-plugin-tailwindcss")]
 };
