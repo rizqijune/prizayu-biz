@@ -2,7 +2,7 @@ en:
   PNYA:
     BLOG:
       THEME:
-        MONTHS_OF_THE_YEAR_SHORT: [Jan, Feb, Mar, Apr, Mei, Jun, Jul, Agus, Sep, Okt, Nov, Des]
+        MONTHS_OF_THE_YEAR_SHORT: [Jan, Feb, Mar, Apr, Mei, Jun, Jul, Aug, Sep, Oct, Nov, Des]
         POSTS: Posts
         TOC: Chapters
         SEARCH: Search

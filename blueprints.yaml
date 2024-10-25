@@ -6,12 +6,12 @@ description: A commercial theme of Prizayu built with TailwindCSS
 icon: gem
 author:
   name: Muhammad Rizqi Juniyanto
-  email: rizqijune@pm.me
-homepage: https://pnya.my.id/grav/grav-theme-prizayu-biz
+  email: support@pnya.my.id
+homepage: https://pnya.my.id/projects/grav/grav-theme-prizayu-biz
 demo: https://pnya.my.id/grav/grav-theme-prizayu-biz/demo
 keywords: grav, theme, single, page, modular, tailwind, tailwindcss, business, corporate, landing, landingpage, e-commerce, laravelmix, development
 bugs: https://pnya.my.id/support
-readme: https://pnya.my.id/grav/grav-theme-prizayu-biz/documentation
+readme: https://pnya.my.id/projects/grav/grav-theme-prizayu-biz/documentation
 license: MIT
 
 dependencies:
@@ -23,6 +23,7 @@ dependencies:
 - breadcrumbs
 - readingtime
 - page-toc
+- prizayu-plugin
 
 form:
   validation: loose

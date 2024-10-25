@@ -1,4 +1,3 @@
-<!-- Tags rendering start -->
 {% for tag in post.taxonomy.tag %}
     <a class="font-bold uppercase badge badge-accent" 
        href="{{ base_url }}/blog/tag{{ config.system.param_sep }}{{ tag }}{% if view_mode is not empty %}?view={{ view_mode }}{% endif %}">
@@ -6,4 +5,5 @@
     </a>
     {% if not loop.last %} {% endif %}
 {% endfor %}
-<!-- Tags rendering end -->
+
+{# Used on listing #}
