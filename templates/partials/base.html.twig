@@ -1,57 +1,67 @@
 <!DOCTYPE html>
-<html class="h-full" lang="{{ (grav.language.getActive ?: grav.config.site.default_lang)|e }}">
-<head>
-{% block head %}
-    <meta charset="utf-8" />
-    <title>{% if header.title %}{{ header.title|e }} | {% endif %}{{ site.title|e }}</title>
+<html class="h-full"
+    lang="{{ (grav.language.getActive ? : grav.config.site.default_lang)|e }}">
+    <head>
+        {% block head %}
+            <meta charset="utf-8" />
+            <title>
+                {% if header.title %}
+                    {{ header.title|e }} |
+                {% endif %}{{ site.title|e }}
+            </title>
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% include 'partials/metadata.html.twig' %}
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta name="viewport"
+                content="width=device-width, initial-scale=1" />
+            {% include 'partials/metadata.html.twig' %}
 
-    <link rel="icon" type="image/png" href="{{ url('theme://images/logo.png')|e }}" />
-    <link rel="canonical" href="{{ page.canonical(true)|e }}" />
-{% endblock head %}
+            <link rel="icon"
+                type="image/png"
+                href="{{ url('theme://images/logo.png')|e }}" />
+            <link rel="canonical" href="{{ page.canonical(true)|e }}" />
+        {% endblock head %}
 
-{% block stylesheets %}
-    {% do assets.addCss('theme://css/app.css', 100) %}
-{% endblock %}
+        {% block stylesheets %}
+            {% style priority : 20 with { media: 'screen' } %}[x-cloak] {
+            display: none !important; }{% endstyle %}
+            {% do assets.addCss('theme://css/app.css', 100) %}
+        {% endblock stylesheets %}
 
-{% block javascripts %}
-    {% do assets.addJs('theme://js/app.js', 98) %}
-    {% do assets.addJs('theme://js/vendor.js', 100) %}
-    {% do assets.addJs('theme://js/manifest.js', 99) %}
-    {% do assets.addJs('theme://js/app-defer.js', { loading: 'defer' }) %}
-{% endblock %}
+        {% block javascripts %}
+            {% do assets.addJs('theme://js/app.js', 98) %}
+            {% do assets.addJs('theme://js/vendor.js', 100) %}
+            {% do assets.addJs('theme://js/manifest.js', 99) %}
+            {% do assets.addJs(
+                'theme://js/app-defer.js',
+                { loading: 'defer' }
+            ) %}
+        {% endblock javascripts %}
 
-{% block assets deferred %}
-    {{ assets.css()|raw }}
-    {{ assets.js()|raw }}
-{% endblock %}
-</head>
-<body class="h-full {{ page.header.body_classes|e }} bg-neutral-100 text-black">
+        {% block assets deferred %}
+        {{ assets.css()|raw }}
+        {{ assets.js()|raw }}
+        {% endblock %}
+    </head>
+    <body class="h-full {{ page.header.body_classes|e }} bg-neutral-100 text-black">
+        {% block header %}
+            {% include 'partials/layout/navbar.html.twig' %}
+        {% endblock header %}
 
-{% block header %}
+        {% block body %}
+            <main class="pt-16">
+                <section>
+                    {% block content %}
+                    {% endblock content %}
+                </section>
+            </main>
+        {% endblock body %}
 
-    {% include 'partials/layout/navbar.html.twig' %}
+        {% block footer %}
+            {% include 'partials/layout/footer.html.twig' %}
+        {% endblock footer %}
 
-{% endblock %}
-
-{% block body %}
-    <main class="pt-16">
-        <section>
-        {% block content %}{% endblock %}
-        </section>
-    </main>
-{% endblock %}
-
-{% block footer %}
-    {% include 'partials/layout/footer.html.twig' %}
-{% endblock %}
-
-{% block bottom %}
-    {{ assets.js('bottom')|raw }}
-{% endblock %}
-
-</body>
+        {% block bottom %}
+            {{ assets.js('bottom')|raw }}
+        {% endblock bottom %}
+    </body>
 </html>
