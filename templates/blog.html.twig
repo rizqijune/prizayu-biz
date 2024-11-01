@@ -1,145 +1,114 @@
 {% extends 'partials/base.html.twig' %}
 
 {% block content %}
-    {# TOC UI #}
-    <div class="fixed z-50 flex">
-        {# Toggle #}
-        <input type="checkbox"
-            id="toc-toggle"
-            class="peer relative sr-only"
-            checked />
-        <label for="toc-toggle"
-            class="left-2 bg-primary top-1/2 peer-checked:rotate-180 peer-checked:left-64 fixed inline-block p-4 transition-all duration-500 rounded-full shadow-2xl">
-            <div class="w-6 h-1 mb-3 bg-white rounded-lg"></div>
-            <div class="w-6 h-1 bg-white rounded-lg"></div>
-        </label>
-        {# TOC Content #}
-        <div class="bg-neutral-50 rounded-xl top-1/2 peer-checked:translate-x-0 fixed left-0 w-64 transition-all duration-500 transform -translate-x-full rounded-l-none shadow-2xl">
-            <div class="px-6 py-4">
-                <h2 class="rounded-xl text-lg font-semibold text-center border-2">
-                    {{ 'PNYA.BLOG.THEME.TOC'|t|e }}
-                </h2>
-                {% include 'partials/components/page-toc.html.twig' %}
-            </div>
-        </div>
-        {# TOC Content #}
-    </div>
-    {# TOC UI #}
+	{# TOC UI #}
+	<div
+		x-data="{ isOpen: true, labelHeight: 'auto' }" class="fixed z-40 flex items-center">
+		{# Toggle #}
+		<input type="checkbox" id="toc-toggle" x-model="isOpen" class="peer relative sr-only"/>
+		<label for="toc-toggle" :style="{ height: labelHeight }" class="bg-primary fixed p-4 duration-500 z-50 rounded-r-lg shadow-md shadow-primary transform peer-checked:translate-y-2 peer-checked:rounded-l-lg inline-flex items-center justify-center left-0 top-1/2 peer-checked:left-60 transition-transform" x-ref="label" @transitionend="isOpen ? labelHeight = `${$refs.tocContent.scrollHeight - 20}px` : labelHeight = 'auto'"  x-init="$nextTick(() => { setTimeout(() => { labelHeight = `${$refs.tocContent.scrollHeight - 20}px`; }, 1000); })">
+			<svg class="w-6 h-6 fill-neutral-100" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 384 512">
+				<path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"/>
+			</svg>
+		</label>
+		{# TOC Content #}
+		<div x-show="isOpen" x-ref="tocContent" class="bg-white rounded-l-none top-1/2 z-40 fixed left-0 w-64 duration-500 transform rounded-lg shadow-sm" @transitionend="labelHeight = `${$refs.tocContent.scrollHeight}px`">
+			<div class="px-6 py-4">
+				<h2 class="rounded-xl text-lg font-semibold text-center border-2">
+					{{ 'PNYA.BLOG.THEME.TOC'|t|e }}
+				</h2>
+				{% include 'partials/components/page-toc.html.twig' %}
+			</div>
+		</div>
+		{# TOC Content #}
+	</div>
+{# TOC UI #}
 
-    <!-- Main Content -->
-    <article class="mt-14 w-full">
-        <header id="post-header" class="sm:py-20 overflow-clip py-16">
-            <div class="container">
-                <div class="row lg:flex-nowrap items-center">
-                    <div class="lg:col-6 lg:text-left text-center">
-                        <div class="sm:flex-row lg:justify-start gap-x-4 gap-y-1 flex flex-col items-center justify-center mb-6">
-                            {% include 'components/cats.html.twig' %}
-                            <span class="opacity-40 font-light">—</span>
-                            <p>
-                                {{ page.header.date|date('d.') }}
-                                {{
+<!-- Main Content -->
+<article class="mt-14 w-full">
+	<header id="post-header" class="sm:py-20 overflow-clip py-16">
+		<div class="container">
+			<div class="row lg:flex-nowrap items-center">
+				<div class="lg:col-6 lg:text-left text-center">
+					<div class="sm:flex-row lg:justify-start gap-x-4 gap-y-1 text-black flex flex-col items-center justify-center mb-6">
+						{% include 'components/cats.html.twig' %}
+						<span class="opacity-40 text-black">—</span>
+						<p>
+							{{ page.header.date|date('d.') }}
+							{{
                                     'PNYA.BLOG.THEME.MONTHS_OF_THE_YEAR_SHORT'|ta(
                                         (page.header.date|date('n')) - 1
                                     )
                                 }}.
-                                {{ page.header.date|date('Y') }}
-                            </p>
-                        </div>
-                        <h1 class="text-3xl md:text-4xl !leading-relaxed mb-6 text-balance">
-                            {{ page.title }}
-                        </h1>
-                        <ul class="lg:justify-start gap-y-1 mb-14 flex flex-wrap items-center justify-center gap-3 text-sm text-black uppercase">
-                            <li>
-                                <a class="hover:text-black hover:underline flex items-center transition-all duration-300"
-                                    href="author-single.html">
-                                    <img alt="Author of the post - {{ page.header.pzauthor }}"
-                                        loading="lazy"
-                                        width="24"
-                                        height="24"
-                                        class="h-6 w-6 border border-[#ABABAB] rounded-full mr-2 bg-white/40"
-                                        src="http://localhost/images/author/nilima-nike.jpg" />
-                                    {{ page.header.pzauthor }}
-                                </a>
-                            </li>
-                            <li>•</li>
-                            <li>
-                                {{
+							{{ page.header.date|date('Y') }}
+						</p>
+					</div>
+					<h1 class="text-3xl md:text-4xl !leading-relaxed mb-6 text-balance">
+						{{ page.title }}
+					</h1>
+					<ul class="lg:justify-start gap-y-1 mb-14 flex flex-wrap items-center justify-center gap-3 text-sm text-black uppercase">
+						<li>
+							<a class="hover:text-black hover:underline flex items-center transition-all duration-300" href="author-single.html">
+								<img alt="Author of the post - {{ page.header.pzauthor }}" loading="lazy" width="24" height="24" class="h-6 w-6 border border-[#ABABAB] rounded-full mr-2 bg-white/40" src="http://localhost/images/author/nilima-nike.jpg"/>
+								{{ page.header.pzauthor }}
+							</a>
+						</li>
+						<li>•</li>
+						<li>
+							{{
                                     page.content|readingtime({
                                         minutes_label: 'MINS',
                                         minute_label: 'MIN',
                                         seconds_label: 'SECS',
                                         second_label: 'SEC'
                                     })
-                                }} TO READ
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="lg:col-8">
-                        <div class="relative w-full h-[380px] lg:h-[460px]">
-                            {% if page.media.images is not empty %}
-                                <img alt="{{ page.title }}"
-                                    loading="lazy"
-                                    class="h-[380px] lg:h-[460px] w-full object-cover rounded-xl bg-dark/10"
-                                    src="{{ page.media.images|first.url }}" />
-                            {% else %}
-                                <img alt="{{ page.title }}"
-                                    loading="lazy"
-                                    class="h-[380px] lg:h-[460px] w-full object-cover rounded-xl bg-dark/10"
-                                    src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22600%22%20height%3D%22400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20400%22%20preserveAspectRatio%3D%22none%22%3E%0A%20%20%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%20%20%3Cstyle%20type%3D%22text%2Fcss%22%3E%0A%20%20%20%20%20%20%20%20%20%20%23holder%20text%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20fill%3A%20%23000000%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20font-family%3A%20sans-serif%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20font-size%3A%2040px%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20font-weight%3A%20800%3B%0A%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%3C%2Fstyle%3E%0A%20%20%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%20%20%3Cg%20id%3D%22holder%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23b6a6ed%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%3Cg%3E%0A%20%20%20%20%20%20%20%20%20%20%3Ctext%20text-anchor%3D%22middle%22%20x%3D%2250%25%22%20y%3D%2250%25%22%20dy%3D%22.3em%22%3E{{ post.title }}%3C%2Ftext%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fsvg%3E" />
-                            {% endif %}
-                            <svg id="svgHead1"
-                                class="fill-neutral-100 absolute bottom-0 left-[96px] md:left-[104px] lg:visible invisible lg:left-[61px] z-20 rotate-[275deg] w-4 h-4 text-neutral-100"
-                                viewBox="0 0 101 101"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    clip-rule="evenodd"
-                                    d="M101 0H0V101H1C1 45.7715 45.7715 1 101 1V0Z"></path>
-                            </svg>
-                            <svg id="svgHead2"
-                                class="absolute fill-neutral-100 bottom-0 lg:bottom-[71px] left-[95px] lg:visible invisible md:left-[102px] lg:left-0 z-20 rotate-[270deg] w-4 h-4"
-                                viewBox="0 0 101 101"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    clip-rule="evenodd"
-                                    d="M101 0H0V101H1C1 45.7715 45.7715 1 101 1V0Z"></path>
-                            </svg>
-                            <div class="bg-white border-8 border-neutral-100 w-24 sm:w-28 absolute -bottom-10 left-3 lg:-left-12 rounded-full p-3 text-[15px] font-bold">
-                                <svg viewBox="0 0 100 100"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path id="circlePath"
-                                        d="M 10, 50 a 40,40 0 1,1 80,0 40,40 0 1,1 -80,0"
-                                        fill="none"></path>
-                                    <text>
-                                        <textPath href="#circlePath"
-                                            class="font-extrabold tracking-[0.25em] uppercase text-sm" fill="currentColor">
-                                            — exclusive — content
-                                        </textPath>
-                                    </text>
-                                </svg>
+                                }}
+							TO READ
+						</li>
+					</ul>
+				</div>
+				<div class="lg:col-8">
+					<div class="relative w-full h-[380px] lg:h-[460px]">
+						{% if page.media.images is not empty %}
+							<img alt="{{ page.title }}" loading="lazy" class="h-[380px] lg:h-[460px] w-full object-cover rounded-xl bg-black/10" src="{{ page.media.images|first.url }}"/>
+						{% else %}
+							<img alt="{{ page.title }}" loading="lazy" class="h-[380px] lg:h-[460px] w-full object-cover rounded-xl bg-black/10" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22600%22%20height%3D%22400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20400%22%20preserveAspectRatio%3D%22none%22%3E%0A%20%20%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%20%20%3Cstyle%20type%3D%22text%2Fcss%22%3E%0A%20%20%20%20%20%20%20%20%20%20%23holder%20text%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20fill%3A%20%23000000%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20font-family%3A%20sans-serif%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20font-size%3A%2040px%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20font-weight%3A%20800%3B%0A%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%3C%2Fstyle%3E%0A%20%20%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%20%20%3Cg%20id%3D%22holder%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23b6a6ed%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%3Cg%3E%0A%20%20%20%20%20%20%20%20%20%20%3Ctext%20text-anchor%3D%22middle%22%20x%3D%2250%25%22%20y%3D%2250%25%22%20dy%3D%22.3em%22%3E{{ post.title }}%3C%2Ftext%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fsvg%3E"/>
+						{% endif %}
+						<svg id="svgHead1" class="fill-white absolute bottom-0 left-[96px] md:left-[104px] lg:visible invisible lg:left-[61px] z-20 rotate-[275deg] w-4 h-4 text-neutral-100" viewbox="0 0 101 101" xmlns="http://www.w3.org/2000/svg">
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M101 0H0V101H1C1 45.7715 45.7715 1 101 1V0Z"></path>
+						</svg>
+						<svg id="svgHead2" class="absolute fill-white bottom-0 lg:bottom-[71px] left-[95px] lg:visible invisible md:left-[102px] lg:left-0 z-20 rotate-[270deg] w-4 h-4" viewbox="0 0 101 101" xmlns="http://www.w3.org/2000/svg">
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M101 0H0V101H1C1 45.7715 45.7715 1 101 1V0Z"></path>
+						</svg>
+						<div class="bg-white border-white shadow-lg border-8 w-24 sm:w-28 absolute -bottom-10 left-3 lg:-left-12 rounded-full p-3 text-[15px] font-bold">
+							<svg viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+								<path id="circlePath" d="M 10, 50 a 40,40 0 1,1 80,0 40,40 0 1,1 -80,0" fill="none"></path>
+								<text>
+									<textPath href="#circlePath" class="font-extrabold text-black tracking-[0.25em] uppercase text-sm" fill="currentColor">
+										— exclusive — content
+									</textPath>
+								</text>
+							</svg>
 
-                                <svg class="top-1/2 left-1/2 absolute -translate-x-1/2 w-6 h-6 -translate-y-1/2 fill-yellow-400 dark:stroke-yellow-500 dark:fill-none "
-                                    viewBox="0 0 256 256"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <polygon points="72 40 184 40 240 104 128 224 16 104 72 40" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><polygon points="176 104 128 224 80 104 128 40 176 104" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="16" y1="104" x2="240" y2="104" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
+							<svg class="top-1/2 left-1/2 absolute -translate-x-1/2 w-6 h-6 -translate-y-1/2 fill-yellow-400 dark:stroke-yellow-500 dark:fill-none " viewbox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<polygon points="72 40 184 40 240 104 128 224 16 104 72 40" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><polygon points="176 104 128 224 80 104 128 40 176 104" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="16" y1="104" x2="240" y2="104" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
+							</svg>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
 
-        <div class="lg:block container hidden">
-            <div class="row">
-                <div class="col-12 mt-2">
-                    <hr class="border-[#DBD8BD]" />
-                </div>
-            </div>
-        </div>
+	<div class="lg:block container hidden">
+		<div class="row">
+			<div class="col-12 mt-2">
+				<hr class="border-[#DBD8BD]"/>
+			</div>
+		</div>
+	</div>
 
-        <div class="w-full p-6 prose">
-            {{ page.content|raw }}
-        </div>
-    </article>
-{% endblock content %}
+	<div class="w-full p-6 prose content max-w-none nightwind-prevent-block prose-p:text-black dark:prose-p:text-white">
+		{{ page.content|raw }}
+	</div>
+</article>{% endblock content %}

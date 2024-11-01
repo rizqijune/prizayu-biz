@@ -15,9 +15,6 @@
   &-white {
     @apply text-white border-white;
   }
-  &-light {
-    @apply text-white border-white;
-  }
 }
 
 .animate-top-right:hover .animate-icon {

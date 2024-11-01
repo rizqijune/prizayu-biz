@@ -2,9 +2,9 @@
     {% for item in items %}
         {% set class = loop.first ? 'first' : loop.last ? 'last' : null %}
 
-        <a class="{{ class }} flex flex-row mt-4 hover:bg-stone-200 rounded-xl px-2 py-1"
+        <a class="{{ class }} flex flex-row mt-4 hover:bg-zinc-950/15 rounded-xl text-black px-2 py-1"
             href="{{ item.uri }}">
-            <div class="w-6 h-6 text-center text-black bg-center rounded-full shadow-2xl fill-current stroke-none bg-gradient-to-tl from-green-600 to-lime-400">
+            <div class="w-6 h-6 text-center bg-center rounded-full shadow-2xl fill-current stroke-none bg-gradient-to-tl from-green-600 to-lime-400">
                 <div class="icon-adn w-6 h-6"></div>
             </div>
             <span class="self-center ml-2">{{ item.label|raw }}</span>

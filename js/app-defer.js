@@ -27,33 +27,36 @@ lightbox.init();
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_2__["default"];
 alpinejs__WEBPACK_IMPORTED_MODULE_2__["default"].plugin(_alpinejs_focus__WEBPACK_IMPORTED_MODULE_3__["default"]);
 alpinejs__WEBPACK_IMPORTED_MODULE_2__["default"].start();
-document.addEventListener('DOMContentLoaded', function () {
-  // Toggle TOC
-  // const toggleButton = document.getElementById('toc-toggle');
-  // const toc = document.getElementById('toc');
 
-  // Initial state
-  // toc.classList.add('toc-visible');
+// Immediately check localStorage and apply styles
+var doc = document.documentElement;
+var isDarkmode = window.localStorage.getItem("ui-mode") === "dark";
+if (isDarkmode) {
+  doc.classList.add("dark");
+}
+document.addEventListener("DOMContentLoaded", function () {
+  var darkSwitch = document.getElementById("dark-mode");
+  var darkIcon = document.getElementById("dark-icon");
+  var lightIcon = document.getElementById("light-icon");
 
-  // toggleButton.addEventListener('click', () => {
-  //     if (toc.classList.contains('toc-visible')) {
-  //         toc.classList.remove('toc-visible');
-  //         toc.classList.add('hidden');
-  //     } else {
-  //         toc.classList.remove('hidden');
-  //         toc.classList.add('toc-visible');
-  //     }
-  // });
-  //   const navbarSocial = document.getElementById('navbar-social');
-  // console.log(navbarSocial)
-  // window.onscroll = () => {
-  //   if (window.scrollY > 500) {
-  //     navbarSocial.style.display = 'none';
+  // Toggle dark mode and update local storage
+  function toggleDarkMode() {
+    var currentMode = window.localStorage.getItem("ui-mode");
+    var newMode = currentMode === "dark" ? "light" : "dark";
+    doc.classList.toggle("dark", newMode === "dark");
+    window.localStorage.setItem("ui-mode", newMode);
+    updateUI(newMode);
+  }
+  function updateUI(mode) {
+    darkIcon.classList.toggle("hidden", mode === "light");
+    lightIcon.classList.toggle("hidden", mode === "dark");
+  }
+  darkSwitch.addEventListener("click", function () {
+    toggleDarkMode();
+  });
 
-  //   }else{
-  //     navbarSocial.style.display = 'block';
-  //   }
-  // };
+  // Initialize UI based on current mode
+  updateUI(window.localStorage.getItem("ui-mode"));
 });
 
 /***/ })

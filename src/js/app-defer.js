@@ -15,32 +15,39 @@ Alpine.plugin(focus)
 Alpine.start()
 
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Toggle TOC
-  // const toggleButton = document.getElementById('toc-toggle');
-  // const toc = document.getElementById('toc');
 
-  // Initial state
-  // toc.classList.add('toc-visible');
-  
-  // toggleButton.addEventListener('click', () => {
-  //     if (toc.classList.contains('toc-visible')) {
-  //         toc.classList.remove('toc-visible');
-  //         toc.classList.add('hidden');
-  //     } else {
-  //         toc.classList.remove('hidden');
-  //         toc.classList.add('toc-visible');
-  //     }
-  // });
-//   const navbarSocial = document.getElementById('navbar-social');
-// console.log(navbarSocial)
-// window.onscroll = () => {
-//   if (window.scrollY > 500) {
-//     navbarSocial.style.display = 'none';
 
-//   }else{
-//     navbarSocial.style.display = 'block';
-//   }
-// };
+// Immediately check localStorage and apply styles
+const doc = document.documentElement;
+const isDarkmode = window.localStorage.getItem("ui-mode") === "dark";
+if (isDarkmode) {
+    doc.classList.add("dark");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const darkSwitch = document.getElementById("dark-mode");
+    const darkIcon = document.getElementById("dark-icon");
+    const lightIcon = document.getElementById("light-icon");
+
+    // Toggle dark mode and update local storage
+    function toggleDarkMode() {
+        const currentMode = window.localStorage.getItem("ui-mode");
+        const newMode = currentMode === "dark" ? "light" : "dark";
+        doc.classList.toggle("dark", newMode === "dark");
+        window.localStorage.setItem("ui-mode", newMode);
+        updateUI(newMode);
+    }
+
+    function updateUI(mode) {
+        darkIcon.classList.toggle("hidden", mode === "light");
+        lightIcon.classList.toggle("hidden", mode === "dark");
+    }
+
+    darkSwitch.addEventListener("click", () => {
+        toggleDarkMode();
+    });
+
+    // Initialize UI based on current mode
+    updateUI(window.localStorage.getItem("ui-mode"));
 });
 

@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+    darkMode: "selector",
     content: [
         "./templates/**/*.html.twig",
         "./templates/*.html.twig",
@@ -11,13 +12,17 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                primary: "#ff4848",
-                secondary: "#415649",
-                black: "#000000",
-                dark: "#060C14",
-                light: "#E7E5D4",
-                border: "#DCDBD0",
-                borderLight: "#BFBEB5",
+                background: "hsl(var(--background) / <alpha-value>)",
+                primary: "hsl(var(--primary) / <alpha-value>)",
+                secondary: "hsl(var(--secondary) / <alpha-value>)",
+                accent: "hsl(var(--background) / <alpha-value>)",
+                black: "hsl(var(--black) / <alpha-value>)",
+                white: "hsl(var(--white) / <alpha-value>)",
+                border: "hsl(var(--border) / <alpha-value>)",
+                info: "#0369a1",
+                success: "#15803d",
+                warning: "#c2410c",
+                error: "#be123c",
             },
             fontFamily: {
                 primary: ["var(--font-primary)", "serif"],
@@ -28,7 +33,6 @@ module.exports = {
     plugins: [
         require("@tailwindcss/typography"),
         require("./moz-blur-support"),
-        require("nightwind"),
         require("tailwind-bootstrap-grid")({
             gridGutters: {
                 0: 0,

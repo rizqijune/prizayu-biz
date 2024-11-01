@@ -14,7 +14,6 @@
   "dependencies": {
     "@alpinejs/focus": "^3.14.1",
     "alpinejs": "^3.14.1",
-    "nightwind": "^1.1.13",
     "photoswipe": "^5.4.4"
   },
   "devDependencies": {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="h-full"
+<html class="h-full min-w-full"
     lang="{{ (grav.language.getActive ? : grav.config.site.default_lang)|e }}">
     <head>
         {% block head %}
@@ -16,8 +16,8 @@
             {% include 'partials/metadata.html.twig' %}
 
             <link rel="icon"
-                type="image/png"
-                href="{{ url('theme://images/logo.png')|e }}" />
+                type="image/svg"
+                href="{{ url('theme://images/logo.svg')|e }}" />
             <link rel="canonical" href="{{ page.canonical(true)|e }}" />
         {% endblock head %}
 
@@ -42,14 +42,15 @@
         {{ assets.js()|raw }}
         {% endblock %}
     </head>
-    <body class="h-full {{ page.header.body_classes|e }} bg-neutral-100 text-black">
+    <body class="min-w-full">
         {% block header %}
             {% include 'partials/layout/navbar.html.twig' %}
         {% endblock header %}
 
         {% block body %}
-            <main class="pt-16">
-                <section>
+        {# {% include 'partials/layout/splash.html.twig' %} #}
+            <main class="px-6 pt-20 mt-8 antialiased sm:mt-8">
+                <section class="flex flex-col items-center justify-between max-w-screen-xl px-4 mx-auto ">
                     {% block content %}
                     {% endblock content %}
                 </section>

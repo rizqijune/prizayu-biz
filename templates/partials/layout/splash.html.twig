@@ -1,0 +1,114 @@
+<div x-data="loadingScreen()" x-show="isVisible" class="no-scroll bg-white flex flex-col items-center fixed p-6 rounded-lg shadow-lg w-full h-full z-50">
+    
+    <!-- Logo Skeleton -->
+    <div class="animate-pulse mb-6">
+        <div class="w-32 h-32 bg-gray-200 rounded-full"></div>
+    </div>
+
+    <!-- Spinner -->
+    <div class="flex items-center mb-4" x-show="isLoading">
+        <div class="animate-spin rounded-full border-4 border-blue-500 border-t-transparent w-12 h-12"></div>
+    </div>
+
+    <div x-show="failedItems.length > 0" class="text-red-600 mb-4">
+        <p x-text="failedItems.length + ' item(s) failed to load.'"></p>
+    </div>
+
+    <div class="text-center mb-4" x-text="statusMessage"></div>
+
+    <div class="flex justify-between mt-auto w-full" x-show="!isLoading && items.length > 0">
+        <button @click="showModal = true" class="bg-blue-500 text-white rounded px-4 py-2">Show Errors</button>
+        <button @click="continueWithFailures" class="bg-blue-500 text-white rounded px-4 py-2 ml-auto">Continue Anyway</button>
+    </div>
+
+    <!-- Modal for error details -->
+    <div x-show="showModal" x-cloak class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-lg font-bold">Failed Items</h3>
+            <ul>
+                <template x-for="item in failedItems.slice(0, 5)" :key="item">
+                    <li class="text-red-600" x-text="getFileName(item)"></li>
+                </template>
+            </ul>
+            <button @click="showModal = false" class="mt-4 bg-blue-500 text-white rounded px-4 py-2">Close</button>
+        </div>
+    </div>
+</div>
+
+<script>
+function loadingScreen() {
+    const resourceElements = [...document.head.querySelectorAll('link[rel="stylesheet"], script[src]')];
+    const imageElements = [...document.head.querySelectorAll('img'), ...document.body.querySelectorAll('img')];
+
+    return {
+        items: [
+            ...resourceElements.map(el => ({
+                name: el.href || el.src,
+                loaded: false
+            })),
+            ...imageElements.map(img => ({
+                name: img.src,
+                loaded: false
+            }))
+        ],
+        failedItems: [],
+        isVisible: true,
+        showModal: false,
+        isLoading: true,
+        statusMessage: 'Loading resources...',
+        init() {
+            setTimeout(() => {
+                this.loadResources();
+            }, 2000); // Start loading after 2 seconds
+        },
+        loadResources() {
+            this.items.forEach((item, index) => {
+                if (item.name.endsWith('.png') || item.name.endsWith('.jpg') || item.name.endsWith('.jpeg') || item.name.endsWith('.gif') || item.name.endsWith('.svg')) {
+                    const img = new Image();
+                    img.src = item.name;
+                    img.onload = () => this.resourceLoaded(item.name, index);
+                    img.onerror = () => this.resourceFailed(item.name, index);
+                } else {
+                    fetch(item.name)
+                        .then(response => {
+                            if (!response.ok) throw new Error('Failed to load');
+                            this.resourceLoaded(item.name, index);
+                        })
+                        .catch(() => this.resourceFailed(item.name, index));
+                }
+            });
+        },
+        resourceLoaded(name, index) {
+            this.updateItemStatus(name, true);
+            this.statusMessage = `${this.getFileName(name)} loaded successfully.`;
+            this.checkLoadingComplete();
+        },
+        resourceFailed(name, index) {
+            this.updateItemStatus(name, false);
+            this.statusMessage = `${this.getFileName(name)} failed to load.`;
+            this.checkLoadingComplete();
+        },
+        updateItemStatus(name, status) {
+            const item = this.items.find(item => item.name === name);
+            if (item) {
+                item.loaded = status;
+                if (!status) this.failedItems.push(name);
+            }
+        },
+        checkLoadingComplete() {
+            if (this.items.every(item => item.loaded) || this.failedItems.length > 0) {
+                this.isLoading = false;
+            }
+        },
+        continueWithFailures() {
+            this.closeLoadingScreen();
+        },
+        closeLoadingScreen() {
+            this.isVisible = false;
+        },
+        getFileName(url) {
+            return url.substring(url.lastIndexOf('/') + 1);
+        }
+    };
+}
+</script>

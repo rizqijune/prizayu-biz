@@ -4,7 +4,7 @@
 {% block content %}
 	{{ page.content|raw }}
 	{# {/* prettier-ignore-end */} #}
-	<div class="container w-full mx-auto mb-10">
+	<div class="mx-auto my-10 w-full">
 		<div class="flex justify-between mb-4">
 			<div>
 				<h2 class="text-lg font-bold">
@@ -14,15 +14,19 @@
 				<p class="text-sm text-gray-600">{{ config.theme.post.subtitle.text }}</p>
 			</div>
 			{% if config.theme.post.list.style == 'both' %}
-				<div class="flex">
-					<a href="{{ (uri.query('view') == 'grid' ? '?view=list' : '?view=grid') }}" class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium tracking-wide text-center transition rounded-md cursor-pointer bg-primary whitespace-nowrap text-neutral-100 hover:opacity-75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed" aria-describedby="tooltipExample">
+				<div class="relative">
+					<a href="{{ (uri.query('view') == 'grid' ? '?view=list' : '?view=grid') }}" class="peer inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium tracking-wide text-center transition rounded-md cursor-pointer bg-primary whitespace-nowrap text-neutral-100 hover:opacity-75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed" aria-describedby="tooltipListMode">
 						{% if uri.query('view') == 'list' %}
-						<svg class="w-6 h-6 fill-neutral-100" role="img" aria-labelledby="grid-mode" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M224 80c0-26.5-21.5-48-48-48H80C53.5 32 32 53.5 32 80v96c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48V80zm0 256c0-26.5-21.5-48-48-48H80c-26.5 0-48 21.5-48 48v96c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48V336zM288 80v96c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48H336c-26.5 0-48 21.5-48 48zM480 336c0-26.5-21.5-48-48-48H336c-26.5 0-48 21.5-48 48v96c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48V336z"/></svg>
+							<svg class="w-6 h-6 fill-neutral-100" role="img" aria-labelledby="grid-mode" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M64 144a48 48 0 1 0 0-96 48 48 0 1 0 0 96zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM64 464a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm48-208a48 48 0 1 0 -96 0 48 48 0 1 0 96 0z"/></svg>
 						{% else %}
-					<svg class="w-6 h-6 fill-neutral-100" role="img" aria-labelledby="grid-mode" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M64 144a48 48 0 1 0 0-96 48 48 0 1 0 0 96zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM64 464a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm48-208a48 48 0 1 0 -96 0 48 48 0 1 0 96 0z"/></svg>
+							<svg class="w-6 h-6 fill-neutral-100" role="img" aria-labelledby="list-mode" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M224 80c0-26.5-21.5-48-48-48H80C53.5 32 32 53.5 32 80v96c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48V80zm0 256c0-26.5-21.5-48-48-48H80c-26.5 0-48 21.5-48 48v96c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48V336zM288 80v96c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48H336c-26.5 0-48 21.5-48 48zM480 336c0-26.5-21.5-48-48-48H336c-26.5 0-48 21.5-48 48v96c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48V336z"/></svg>
 						{% endif %}
 					</a>
-					<div id="tooltipExample" class="absolute z-10 px-2 py-1 text-sm text-center text-white transition-all ease-out -translate-x-1/2 rounded opacity-0 -top-9 left-1/2 whitespace-nowrap bg-neutral-950 peer-hover:opacity-100 peer-focus:opacity-100 dark:bg-white dark:text-neutral-900" role="tooltip">Tooltip top</div>
+						<div id="tooltipListMode" class="bg-white pointer-events-none absolute top-full mt-2 left-1/2 -translate-x-1/2 z-10 flex w-64 flex-col gap-1 rounded p-2.5 text-xs opacity-0 transition-all ease-out peer-hover:opacity-100 peer-focus:opacity-100" role="tooltip">
+							<span class="text-sm font-medium">View Mode</span>
+							<p class="text-balance">Change the view mode to list or grid style</p>
+						</div>
+
 				</div>
 			{% endif %}
 		</div>
@@ -40,8 +44,7 @@
 				<li
 					class="relative overflow-hidden rounded-lg shadow-lg post-item">
 					<!-- Card Link -->
-					<a
-						href="{{ post.url }}" class="block rounded-lg border-neutral-400 dark:border-zinc-700">
+					<a href="{{ post.url }}" class="block rounded-lg border-neutral-400 dark:border-zinc-700">
 						<!-- Image Section -->
 
 						<figure class="relative overflow-hidden rounded-lg">
@@ -89,8 +92,8 @@
 									</time>
 								</div>
 								<div class="p-3">
-								<h2 class="text-xl font-bold">{{ post.title }}</h2>
-								<p class="line-clamp-3">{{ post.content|striptags|slice(0, 500) ~ '...' }}</p>
+									<h2 class="text-xl font-bold">{{ post.title }}</h2>
+									<p class="line-clamp-3">{{ post.content|striptags|slice(0, 500) ~ '...' }}</p>
 								</div>
 							</div>
 						{% endif %}
@@ -112,6 +115,4 @@
       } %}
 		{% endif %}
 	</div>
-
-
 {% endblock %}
