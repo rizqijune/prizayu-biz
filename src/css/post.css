@@ -2,7 +2,7 @@
   .post-category {
     @apply absolute right-0 leading-none text-sm inline-block;
     a {
-      @apply rounded-lg border-2 py-2 px-4 uppercase inline-block;
+      @apply rounded-lg py-2 px-[0.10rem] uppercase inline-block;
     }
     .corner svg {
       @apply absolute h-3 md:h-4 w-3 md:w-4;
@@ -41,7 +41,7 @@
 .has-line-link-white {
   .line-link-el {
     text-decoration: none;
-    background-image: linear-gradient(#060C14, #060C14);
+    background-image: linear-gradient(#6b21a8, #ffffff);
     background-position: 100% 100%;
     background-repeat: no-repeat;
     background-size: 0% 1px;

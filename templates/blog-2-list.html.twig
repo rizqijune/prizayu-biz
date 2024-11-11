@@ -1,0 +1,157 @@
+{% extends "partials/base.html.twig" %}
+{% block content %}
+	{{ page.content|raw }}
+	{% set filter = uri.param('filter', 'latest') %}
+
+	{% set options = {
+    items: {'@page.children': '/blog'},
+    limit: 6,
+    order: {'by': 'date', 'dir': 'desc'},
+    pagination: true
+} %}
+
+	{% if filter == 'trending' %}
+		{% set options = options | merge({'order': {'by': 'trending_score', 'dir': 'desc'}}) %}
+	{% elseif filter == 'popular' %}
+		{% set options = options | merge({'order': {'by': 'views', 'dir': 'desc'}}) %}
+	{% elseif filter == 'featured' %}
+		{% set options = options | merge({'filter': {'featured': true}}) %}
+	{% endif %}
+
+	{% set my_collection = page.collection(options) %}
+
+
+	{# Start Blog list title #}
+	<section class="py-16 md:py-24 border-b border-border overflow-clip">
+		<div class="container">
+			<div class="row items-end gy-4">
+				<div class="md:col-8 text-black">
+					<p class="flex items-center justify-center md:justify-start gap-x-2 mb-6 sm:mb-8">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M3 2h18"></path>
+							<rect width="18" height="12" x="3" y="6" rx="2"></rect>
+							<path d="M3 22h18"></path>
+						</svg>
+						<span>Explore Post</span>
+					</p>
+					<h1 class="text-4xl md:text-5xl text-black font-normal text-balance leading-tight capitalize relative z-10 text-center md:text-left">
+						<span class="hidden md:inline-block bg-black w-6 md:w-10 h-px align-middle mr-4 md:mr-6"></span>
+						{{ "PNYA.BLOG.THEME.POSTS"|t|e }}
+					</h1>
+				</div>
+				<div class="md:col-4 text-center md:text-end text-black">
+					<div class="inline-flex items-center gap-x-3">
+						<p>Filter:</p>
+						<select name="filter" class="bg-transparent border border-black/20 rounded px-3 h-8 appearance-none outline-none w-28" title="Filter Posts" onchange="this.form.submit()">
+							<option value="latest" {% if uri.param('filter') == 'latest' %} selected {% endif %}>Latest</option>
+							<option value="trending" {% if uri.param('filter') == 'trending' %} selected {% endif %}>Trending</option>
+							<option value="popular" {% if uri.param('filter') == 'popular' %} selected {% endif %}>Popular</option>
+							<option value="featured" {% if uri.param('filter') == 'featured' %} selected {% endif %}>Featured</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	{# End Blog list title #}
+	{# Start Blog card #}
+	<section class="py-16 sm:py-24 min-h-[500px]">
+		<div class="container overflow-clip">
+			<div class="row gx-5 gy-6">
+				{% for page in my_collection %}
+					{# Start Card #}
+					<div class="xl:col-3 lg:col-4 md:col-6 mb-3 sm:mb-8">
+						<article class="post-card post-category-bottom group relative has-line-link border border-black/15 border-b-0 border-r-0 rounded-2xl p-2 hover:shadow hover:scale-105 transition-all dark:hover:shadow-none dark:hover:border">
+							<div class="relative">
+								<div class="mb-4">
+									<span class="text-sm flex gap-2 text-black items-center mb-3 uppercase">
+										<svg width="16" height="16" viewbox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M12.6663 2.66677H11.333V2.0001C11.333 1.82329 11.2628 1.65372 11.1377 1.5287C11.0127 1.40367 10.8432 1.33344 10.6663 1.33344C10.4895 1.33344 10.32 1.40367 10.1949 1.5287C10.0699 1.65372 9.99967 1.82329 9.99967 2.0001V2.66677H5.99967V2.0001C5.99967 1.82329 5.92944 1.65372 5.80441 1.5287C5.67939 1.40367 5.50982 1.33344 5.33301 1.33344C5.1562 1.33344 4.98663 1.40367 4.8616 1.5287C4.73658 1.65372 4.66634 1.82329 4.66634 2.0001V2.66677H3.33301C2.80257 2.66677 2.29387 2.87748 1.91879 3.25255C1.54372 3.62763 1.33301 4.13633 1.33301 4.66677V12.6668C1.33301 13.1972 1.54372 13.7059 1.91879 14.081C2.29387 14.4561 2.80257 14.6668 3.33301 14.6668H12.6663C13.1968 14.6668 13.7055 14.4561 14.0806 14.081C14.4556 13.7059 14.6663 13.1972 14.6663 12.6668V4.66677C14.6663 4.13633 14.4556 3.62763 14.0806 3.25255C13.7055 2.87748 13.1968 2.66677 12.6663 2.66677ZM13.333 12.6668C13.333 12.8436 13.2628 13.0131 13.1377 13.1382C13.0127 13.2632 12.8432 13.3334 12.6663 13.3334H3.33301C3.1562 13.3334 2.98663 13.2632 2.8616 13.1382C2.73658 13.0131 2.66634 12.8436 2.66634 12.6668V8.0001H13.333V12.6668ZM13.333 6.66677H2.66634V4.66677C2.66634 4.48996 2.73658 4.32039 2.8616 4.19536C2.98663 4.07034 3.1562 4.0001 3.33301 4.0001H4.66634V4.66677C4.66634 4.84358 4.73658 5.01315 4.8616 5.13817C4.98663 5.2632 5.1562 5.33343 5.33301 5.33343C5.50982 5.33343 5.67939 5.2632 5.80441 5.13817C5.92944 5.01315 5.99967 4.84358 5.99967 4.66677V4.0001H9.99967V4.66677C9.99967 4.84358 10.0699 5.01315 10.1949 5.13817C10.32 5.2632 10.4895 5.33343 10.6663 5.33343C10.8432 5.33343 11.0127 5.2632 11.1377 5.13817C11.2628 5.01315 11.333 4.84358 11.333 4.66677V4.0001H12.6663C12.8432 4.0001 13.0127 4.07034 13.1377 4.19536C13.2628 4.32039 13.333 4.48996 13.333 4.66677V6.66677Z" fill="currentColor"></path>
+										</svg>
+										<time datetime="{{ page.date|date('c') }}">
+											{{ 'PNYA.BLOG.THEME.MONTHS_OF_THE_YEAR_SHORT'|ta((post.header.date|date('n')) - 1) }}
+											{{ post.header.date|date('d') }},
+											{{ post.header.date|date('Y') }}
+										</time>
+									</span>
+									<h3 class="text-2xl text-black leading-relaxed mb-4 line-link line-clamp-3">
+										<a class="link-stretched line-link-el" title="{{ page.title }}" href="{{ page.url }}">{{ page.title }}</a>
+									</h3>
+									<ul class="inline-flex flex-wrap items-center gap-3 gap-y-1 uppercase text-sm">
+										<li class=" text-black/45 flex items-center"><img alt="Author of the post - {{ page.header.pzauthor }}" loading="lazy" width="24" height="24" class="h-6 w-6 border border-[#ABABAB] rounded-full mr-2 bg-white/40" src="images/author/kathryn-jackson.jpg">{{ page.header.pzauthor }}</li>
+										<li class="text-black/45">•</li>
+										<li class="text-black/45">
+											{% if config.plugins.readingtime.enabled %}
+												{{ page.content|readingtime({'minutes_label': 'mins', 'minute_label': 'min', 'seconds_label': 'secs', 'second_label': 'sec'}) }}
+											{% endif %}
+										</li>
+									</ul>
+								</div>
+								<span class="post-category bg-white text-black z-10">
+									{% for cat in page.taxonomy.category %}
+										<a class="bg-gradient-to-r from-violet-200 to-pink-200 dark:from-blue-800 dark:to-purple-800 transition duration-300 hover:text-black font-semibold" href="{{ base_url }}/blog/category{{ config.system.param_sep }}{{ cat }}">
+											{% if page.taxonomy.category | length > 0 %}
+												<span class="bg-white hover:bg-transparent py-1 px-[calc(1rem-1px)] rounded-[calc(0.5rem-1px)]">
+													{{ cat }}
+												</span>
+											{% endif %}
+										</a>
+										{% if not loop.last %}{% endif %}
+									{% endfor %}
+
+									{% if page.taxonomy.category | length > 0 %}
+										<span class="text-white corner left">
+											<svg width="101" height="101" viewbox="0 0 101 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path fill-rule="evenodd" clip-rule="evenodd" d="M101 0H0V101H1C1 45.7715 45.7715 1 101 1V0Z" fill="currentColor"></path>
+											</svg>
+										</span>
+										<span class="text-white corner bottom">
+											<svg width="101" height="101" viewbox="0 0 101 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path fill-rule="evenodd" clip-rule="evenodd" d="M101 0H0V101H1C1 45.7715 45.7715 1 101 1V0Z" fill="currentColor"></path>
+											</svg>
+										</span>
+									{% endif %}
+								</span>
+								{% if page.media.images is not empty %}
+									<img alt="{{ page.title }}" loading="lazy" width="580" height="675" class="rounded-xl md:rounded-2xl w-full max-h-96 aspect-[9/12] object-cover bg-white/40" src="{{ page.media.images|first.url }}">
+								{% else %}
+									<img alt="{{ page.title }}" loading="lazy" width="580" height="675" class="rounded-xl md:rounded-2xl w-full max-h-96 aspect-[9/12] object-cover bg-white/40" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22600%22%20height%3D%22400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20400%22%20preserveAspectRatio%3D%22none%22%3E%0A%20%20%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%20%20%3Cstyle%20type%3D%22text%2Fcss%22%3E%0A%20%20%20%20%20%20%20%20%20%20%23holder%20text%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20fill%3A%20%23000000%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20font-family%3A%20sans-serif%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20font-size%3A%2040px%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20font-weight%3A%20800%3B%0A%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%3C%2Fstyle%3E%0A%20%20%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%20%20%3Cg%20id%3D%22holder%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23b6a6ed%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%3Cg%3E%0A%20%20%20%20%20%20%20%20%20%20%3Ctext%20text-anchor%3D%22middle%22%20x%3D%2250%25%22%20y%3D%2250%25%22%20dy%3D%22.3em%22%3E{{ page.title }}%3C%2Ftext%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fsvg%3E">
+								{% endif %}
+							</div>
+						</article>
+					</div>
+				{% endfor %}
+				{# End Card #}
+				{# Start Pagination #}
+				<div class="col-12">
+					<hr class="border-border">
+					{# <div class="flex flex-col justify-center items-center gap-y-4 mt-12">
+						<div class="flex gap-x-5 [&amp;>*]:cursor-pointer [&amp;>*]:flex [&amp;>*]:items-center [&amp;>*]:gap-x-2 [&amp;>*]:px-5 [&amp;>*]:py-3 [&amp;>*]:rounded-md">
+							<a href="blogs.html" class="group pointer-events-none opacity-25">
+								<svg class="-ml-2 transition duration-300 group-hover:-translate-x-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<path d="m15 18-6-6 6-6"></path>
+								</svg>Previous</a>
+							<a href="blogs.html" class="group ">Next
+								<svg class="-mr-2 transition duration-300 group-hover:translate-x-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<path d="m9 18 6-6-6-6"></path>
+								</svg>
+							</a>
+						</div>
+						<p>Page 1
+							<span class="px-5 -translate-y-px inline-block opacity-20">|</span>
+							8 of 16 Posts</p>
+					</div> #}
+{% if config.plugins.pagination.enabled and page.collection.params.pagination %}
+			{% include 'partials/components/pagination.html.twig' with {
+        base_url: page.url,
+        pagination: collection.params.pagination
+      } %}
+		{% endif %}
+				</div>
+				{# End Pagination #}
+
+			</div>
+		</div>
+	</section>
+	{# End Blog card #}
+{% endblock %}

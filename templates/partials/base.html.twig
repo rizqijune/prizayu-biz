@@ -42,18 +42,18 @@
         {{ assets.js()|raw }}
         {% endblock %}
     </head>
-    <body class="min-w-full">
+    <body>
         {% block header %}
             {% include 'partials/layout/navbar.html.twig' %}
         {% endblock header %}
 
         {% block body %}
         {# {% include 'partials/layout/splash.html.twig' %} #}
-            <main class="px-6 pt-20 mt-8 antialiased sm:mt-8">
-                <section class="flex flex-col items-center justify-between max-w-screen-xl px-4 mx-auto ">
+            <main class="pt-20 mt-8 antialiased min-h-[80vh]">
+                {# <section class="flex flex-col items-center justify-between max-w-screen-xl px-4 mx-auto "> #}
                     {% block content %}
                     {% endblock content %}
-                </section>
+                {# </section> #}
             </main>
         {% endblock body %}
 

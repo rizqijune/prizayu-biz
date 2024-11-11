@@ -9,7 +9,7 @@ html {
     --card: 0 0% 83%;
     --primary: 276 100% 66%;
     --secondary:238 84% 64%;
-    --black: 219 17% 32%;
+    --black: 210 30% 10%;
     --white: 60 100% 100%;
 
     background: hsl(var(--background));
@@ -22,7 +22,7 @@ html {
   --primary: 276 100% 56%;
   --secondary: 238 84% 50%;
   --black: 60 100% 100%;
-  --white: 219 17% 32%;
+  --white: 210 30% 10%;
 
   background: hsl(var(--background));
 }
