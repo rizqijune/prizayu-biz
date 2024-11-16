@@ -45,5 +45,5 @@ module.exports = {
             },
         }),
     ],
-    safelist:["fill-[#262626d9]"]
+    safelist:["fill-[#262626d9], size-6"]
 };

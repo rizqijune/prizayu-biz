@@ -14,6 +14,63 @@
 @apply border hover:border-none shadow-md shadow-primary cursor-pointer
 }
 
+/* Markdown notices css */
+.notices {
+  @apply flex w-full items-center gap-2 p-4 rounded-xl border m-2;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.notices.yellow {
+  @apply border-l-8 border-yellow-400 bg-yellow-50 prose-p:text-yellow-700 prose-a:text-zinc-900 prose-strong:text-zinc-900;
+}
+.notices.red {
+  @apply border-l-8 border-red-500 bg-red-50 prose-p:text-red-700 prose-a:text-zinc-900 prose-strong:text-zinc-900;
+}
+.notices.blue {
+  @apply border-l-8 border-blue-400 bg-blue-50 prose-p:text-blue-600 prose-a:text-zinc-900 prose-strong:text-zinc-900;
+}
+.notices.green {
+  @apply border-l-8 border-green-500 bg-green-50 prose-p:text-green-700 prose-a:text-zinc-900 prose-strong:text-zinc-900;
+}
+.notices::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.notices.yellow::before {
+  @apply bg-yellow-500/15 text-yellow-500 rounded-full p-1;
+  background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22%23eab308%22%20class%3D%22size-6%20%22%20aria-hidden%3D%22true%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M10%2018a8%208%200%201%200%200-16%208%208%200%200%200%200%2016Zm3.857-9.809a.75.75%200%200%200-1.214-.882l-3.483%204.79-1.88-1.88a.75.75%200%201%200-1.06%201.061l2.5%202.5a.75.75%200%200%200%201.137-.089l4-5.5Z%22%20clip-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E');
+}
+
+.notices.red::before {
+  @apply bg-red-500/15 text-red-500 rounded-full p-1;
+  background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22%23ef4444%22%20class%3D%22size-6%20%22%20aria-hidden%3D%22true%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M10%2018a8%208%200%201%200%200-16%208%208%200%200%200%200%2016ZM8.28%207.22a.75.75%200%200%200-1.06%201.06L8.94%2010l-1.72%201.72a.75.75%200%201%200%201.06%201.06L10%2011.06l1.72%201.72a.75.75%200%201%200%201.06-1.06L11.06%2010l1.72-1.72a.75.75%200%200%200-1.06-1.06L10%208.94%208.28%207.22Z%22%20clip-rule%3D%22evenodd%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fsvg%3E');
+}
+
+.notices.blue::before {
+  @apply bg-sky-500/15 text-sky-500 rounded-full p-1;
+  background-image: url('data:image/svg+xml,%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22%230ea5e9%22%20class%3D%22size-6%20%22%20aria-hidden%3D%22true%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M18%2010a8%208%200%201%201-16%200%208%208%200%200%201%2016%200Zm-7-4a1%201%200%201%201-2%200%201%201%200%200%201%202%200ZM9%209a.75.75%200%200%200%200%201.5h.253a.25.25%200%200%201%20.244.304l-.459%202.066A1.75%201.75%200%200%200%2010.747%2015H11a.75.75%200%200%200%200-1.5h-.253a.25.25%200%200%201-.244-.304l.459-2.066A1.75%201.75%200%200%200%209.253%209H9Z%22%20clip-rule%3D%22evenodd%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fsvg%3E');
+}
+
+.notices.green::before {
+  @apply bg-green-500/15 text-green-500 rounded-full p-1;
+  background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22%2322c55e%22%20class%3D%22size-6%20%22%20aria-hidden%3D%22true%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M10%2018a8%208%200%201%200%200-16%208%208%200%200%200%200%2016Zm3.857-9.809a.75.75%200%200%200-1.214-.882l-3.483%204.79-1.88-1.88a.75.75%200%201%200-1.06%201.061l2.5%202.5a.75.75%200%200%200%201.137-.089l4-5.5Z%22%20clip-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E');
+}
+.notices h3 {
+  @apply ml-2 text-sm font-semibold;
+}
+.notices p {
+  @apply ml-4 text-xs font-medium sm:text-sm;
+}
+/* End Markdown notices css */
+
 .content {
   @apply text-[#6e6c56];
 

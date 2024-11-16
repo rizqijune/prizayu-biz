@@ -1,7 +1,9 @@
 {% extends 'partials/base.html.twig' %}
 
 {% block content %}
-    <div class="content">
-        {{ page.content|raw }}
-    </div>
+	<article class="mt-14 w-full">
+		<div class="content w-full p-6 prose content max-w-none prose-p:text-black prose-li:text-black prose-a:text-black prose-h2:text-black prose-h3:text-black prose-h1:text-black prose-strong:text-black">
+			{{ page.content|raw }}
+		</div>
+	</article>
 {% endblock %}
