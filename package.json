@@ -1,57 +1,57 @@
 {
-  "name": "prizayu-biz",
-  "version": "1.0.0",
-  "description": "A commercial version's theme from Prizayu (A tailwindcss GRAV Theme).",
-  "main": "",
-  "scripts": {
-    "dev": "mix watch -- --watch-options-poll=1000",
-    "off": "export YARN_ENABLE_OFFLINE_MODE=1 && yarn mix watch -- --watch-options-poll=1000",
-    "on": "export YARN_ENABLE_OFFLINE_MODE=0 && yarn mix watch -- --watch-options-poll=1000",
-    "prod": "mix --production"
-  },
-  "author": "rizqijune",
-  "license": "MIT",
-  "dependencies": {
-    "@alpinejs/focus": "^3.14.1",
-    "alpinejs": "^3.14.1",
-    "photoswipe": "^5.4.4"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.25.7",
-    "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
-    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-    "@babel/plugin-transform-runtime": "^7.25.7",
-    "@babel/preset-env": "^7.25.7",
-    "@tailwindcss/typography": "^0.5.15",
-    "@zackad/prettier-plugin-twig": "^0.9.1",
-    "autoprefixer": "^10.4.20",
-    "browser-sync": "^3.0.3",
-    "browser-sync-webpack-plugin": "https://github.com/Va1/browser-sync-webpack-plugin.git",
-    "laravel-mix": "^6.0.49",
-    "postcss": "^8.4.47",
-    "postcss-cli": "^10.1.0",
-    "postcss-scss": "^4.0.9",
-    "prettier": "^3.3.3",
-    "prettier-plugin-tailwindcss": "^0.6.8",
-    "sass-loader": "^16.0.2",
-    "tailwind-bootstrap-grid": "^5.1.0",
-    "tailwindcss": "^3.4.13",
-    "webpack": "^5.60.0",
-    "webpack-cli": "^4.9.1"
-  },
-  "volta": {
-    "node": "20.18.0",
-    "yarn": "4.5.0"
-  },
-  "dependenciesMeta": {
-    "@zackad/prettier-plugin-twig@0.9.1": {
-      "unplugged": true
+    "name": "prizayu-biz",
+    "version": "1.0.0",
+    "description": "A commercial version's theme from Prizayu (A tailwindcss GRAV Theme).",
+    "main": "",
+    "scripts": {
+        "dev": "mix watch -- --watch-options-poll=1000",
+        "off": "export YARN_ENABLE_OFFLINE_MODE=1 && yarn mix watch -- --watch-options-poll=1000",
+        "on": "export YARN_ENABLE_OFFLINE_MODE=0 && yarn mix watch -- --watch-options-poll=1000",
+        "prod": "mix --production"
     },
-    "prettier@3.3.3": {
-      "unplugged": true
+    "author": "rizqijune",
+    "license": "MIT",
+    "dependencies": {
+        "@alpinejs/focus": "^3.14.3",
+        "alpinejs": "^3.14.3",
+        "photoswipe": "^5.4.4"
     },
-    "tailwindcss@3.4.13": {
-      "unplugged": true
+    "devDependencies": {
+        "@babel/core": "^7.26.0",
+        "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
+        "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+        "@babel/plugin-transform-runtime": "^7.25.9",
+        "@babel/preset-env": "^7.26.0",
+        "@tailwindcss/typography": "^0.5.15",
+        "@zackad/prettier-plugin-twig": "^0.11.1",
+        "autoprefixer": "^10.4.20",
+        "browser-sync": "^3.0.3",
+        "browser-sync-webpack-plugin": "https://github.com/Va1/browser-sync-webpack-plugin.git",
+        "laravel-mix": "https://github.com/rizqijune/laravel-mix.git",
+        "postcss": "^8.4.49",
+        "postcss-cli": "11.0.0",
+        "postcss-scss": "^4.0.9",
+        "prettier": "^3.3.3",
+        "prettier-plugin-tailwindcss": "^0.6.8",
+        "sass-loader": "^16.0.3",
+        "tailwind-bootstrap-grid": "^5.1.0",
+        "tailwindcss": "^3.4.15",
+        "webpack": "^5.96.1",
+        "webpack-cli": "5.1.4"
+    },
+    "volta": {
+        "node": "20.18.0",
+        "yarn": "4.5.0"
+    },
+    "dependenciesMeta": {
+        "@zackad/prettier-plugin-twig@0.9.1": {
+            "unplugged": true
+        },
+        "prettier@3.3.3": {
+            "unplugged": true
+        },
+        "tailwindcss@3.4.13": {
+            "unplugged": true
+        }
     }
-  }
 }
