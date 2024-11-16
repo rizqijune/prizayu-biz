@@ -54,11 +54,11 @@ h6 {
         background: transparent;
     }
     ::-webkit-scrollbar-thumb {
-        background: #415649;
+        background: #4e4156;
         border-radius: 16px;
     }
     ::-webkit-scrollbar-thumb:hover {
-        background: #2e3f35;
+        background: #352e3f;
     }
 
     .no-scroll {

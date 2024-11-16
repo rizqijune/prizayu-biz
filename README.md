@@ -1,98 +1,125 @@
-# Prizayu Biz Theme
+# Prizayu Biz Theme 🚀
 
-![Prizayu Biz screenshot](/screenshot.jpg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Made for Grav](https://img.shields.io/badge/Made%20for-Grav-blue)](https://getgrav.org)
+[![Powered by TailwindCSS](https://img.shields.io/badge/Powered%20by-TailwindCSS-06B6D4)](https://tailwindcss.com)
+[![Alpine.js](https://img.shields.io/badge/Alpine.js-2D323E)](https://alpinejs.dev)
 
-## Description
+A modern, fast, and customizable theme for startups and small businesses, crafted with ❤️ by [rizqijune](https://github.com/rizqijune) under the [PNYA•ID](https://pnya.my.id) brand.
 
-A TailwindCSS 3 based landing page theme using Webpack to process CSS and JS.
+## ✨ Features
 
-Since I am mainly a [Laravel](https://laravel.com/) developer I used the well known [Laravel Mix](https://laravel-mix.com/) Webpack Wrapper to compile TailwindCSS, CSS and JS of the theme.
+### For Developers
+- 🎨 Integrated Prettier configuration for Twig files
+- 🌊 TailwindCSS support for modern, utility-first styling
+- ⚡ Alpine.js for lightweight, reactive components
+- 📦 Laravel Mix with Webpack for asset compilation
+- 🧩 Ready-to-use code snippets
+- 📖 Readable code structure (in progress)
 
-Fortunately Laravel Mix is a **standalone** tool which can be used in **any** webpack project.
+### For End Users
+- 🧱 Modular theme structure
+- 🌓 Dark/Light mode toggle
+- 🎯 Custom logo support
+- 📝 Professional blog templates
+- 🏪 Product showcase functionality
+  - List your products
+  - Redirect to external stores
+  - No built-in payment processing
+- 💬 Custom comment system (in progress)
+- 📱 Mobile-first design approach
+- 🔍 SEO optimized
+- 🚀 Fast loading speeds
+- 📊 Analytics ready
+- 🌐 Multi-language support
+- 📧 Contact form integration
+- 🔒 Security best practices
+- 🎯 Call-to-action sections
 
-## Demo
+## 📥 Installation
 
-View the theme on [the demo site](https://pnya.my.id/grav/grav-theme-prizayu-biz/demo).
+1. Download the theme:
+   ```bash
+   cd user/themes/
+   git clone https://github.com/rizqijune/prizayu-biz.git
+   ```
 
-## Installation
+2. Install dependencies:
+   ```bash
+   cd prizayu-biz
+   yarn install
+   ```
 
-From the root of your Grav installation, run `bin/gpm install prizayu-biz`
+3. Activate the theme in Grav:
+   - Navigate to `Admin Panel > System > Theme`
+   - Select "Prizayu Biz"
+   - Save changes
 
-or
+## 🛠️ Development Setup
 
-download this theme to your `user/themes/` folder and add to the `user/config/system.yaml`:
-```yaml
-   pages:
-    theme: prizayu-biz
+1. Configure VSCode:
+   ```json
+   {
+     "editor.formatOnSave": true,
+     "prettier.configPath": ".prettierrc"
+   }
+   ```
+
+2. Start development server:
+   ```bash
+   yarn dev
+   ```
+
+3. Build for production:
+   ```bash
+   yarn prod
+   ```
+
+## 📋 To-Do List
+
+- [ ] Complete custom comment system
+- [ ] Enhance documentation
+- [ ] Add more blog templates
+- [ ] Implement search functionality
+- [ ] Create theme customizer
+- [ ] Add more product showcase options
+- [ ] Implement caching strategy
+- [ ] Add more shortcodes
+- [ ] Create demo content
+- [ ] Write unit tests
+
+## 💰 Support Development
+
+If you find this theme helpful, consider supporting its development with crypto:
+
+- Bitcoin (BTC): `bc1q...` (add your address)
+- Ethereum (ETH): `0x...` (add your address)
+- Polygon (MATIC): `0x...` (add your address)
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+```
+MIT License
+
+Copyright (c) 2024 PNYA•ID
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions...
 ```
 
-## Using [Laravel Mix](https://laravel-mix.com/docs/6.0/installation)
+## 🤝 Contributing
 
-Even tough the name might suggest otherwise Laravel Mix can be used in any project that needs or wants to use it as a Webpack Wrapper.
-The usage is pretty easy and the API straight forward. Just use `mix.js(sourceFile,destinationPath)` to process JavaScript and `mix.postCss()` or `mix.css()` to process CSS:
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](link-to-issues).
 
-```javascript
-let mix = require('laravel-mix');
+## 📞 Support
 
-mix
-  .js('src/js/app.js', 'js')
-  .js('src/js/app-defer.js', 'js')
-  .postCss('src/css/tailwind.css', 'css/app.css', [
-    require("tailwindcss"),
-  ])
-  .postCss('src/css/fonts.css','css/fonts.css')
-  .options({
-    processCssUrls: false
-  })
-  .extract()
-  .setPublicPath('');
-```
-
-The default source path of this theme is located in the `src`-folder inside theme folder and the processed files are saved in `js`, `css` or `fonts`.
-
-## Theme variables
-
-The Theme uses some theme variables by default to display e.g. the company name, logo, email, phone number or social media links which can be edited in the grav admin center.
-
-![theme variables](/theme_variables_admin_plugin.png)
-
-## Landing Page
-
-The main content of this theme is a single page landing page composed of modular components inside grav.
-These components include
-```
-hero.html.twig
-features.html.twig
-about.html.twig
-gallery.html.twig
-contact.html.twig
-```
-as well as a navbar and a footer.
-
-## Features section
-
-The theme and especially features section includes the popular open source [Feather icons](https://feathericons.com/) which can be used by the filepicker. Unfortunately there is no support to preview the .svg icons from the theme/icons folder.
-```yaml
-.icon:
-    type: filepicker
-    label: Feather Icon
-    folder: 'theme://icons'
-    preview_images: true
-```
-
-## Gallery
-
-The gallery uses the popular [PhotoSwipe Library](https://photoswipe.com/) which gets by initialized by default in the `app-defer.js` JavaScript file which is process by Webpack and imported in the `templates/partials/base.html.twig` file.
-```javascript
-import PhotoSwipeLightbox from 'photoswipe/lightbox';
-import 'photoswipe/style.css';
-
-const lightbox = new PhotoSwipeLightbox({
-  gallery: '#gallery--getting-started',
-  children: 'a',
-  pswpModule: () => import('photoswipe')
-});
-
-lightbox.init();
-```
-Gallery images can be easily uploaded to the Page Media and are automatically imported.
+Need help? You can:
+- Open an issue on GitHub
+- Contact us at [your-email]
+- Visit our website [pnya.id](https://pnya.id)
