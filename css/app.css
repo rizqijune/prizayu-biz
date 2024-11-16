@@ -328,6 +328,10 @@ h6 {
     --tw-bg-opacity: 1;
     background-color: rgb(31 41 55 / var(--tw-bg-opacity));
   }
+  code:where(.dark, .dark *) {
+    --tw-text-opacity: 1;
+    color: hsl(var(--black) / var(--tw-text-opacity));
+  }
   a:not(.no-underline) {
     background-image: linear-gradient(to left, var(--tw-gradient-stops));
   }
@@ -3066,6 +3070,10 @@ video {
   --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
+.shadow-primary {
+  --tw-shadow-color: hsl(var(--primary) / 1);
+  --tw-shadow: var(--tw-shadow-colored);
+}
 .outline-none {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -3811,7 +3819,22 @@ video {
   opacity: 1;
 }
 
+.prose-h2\:text-white :is(:where(h2):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+  --tw-text-opacity: 1;
+  color: hsl(var(--white) / var(--tw-text-opacity));
+}
+
+.prose-h2\:text-black :is(:where(h2):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+  --tw-text-opacity: 1;
+  color: hsl(var(--black) / var(--tw-text-opacity));
+}
+
 .prose-p\:text-black :is(:where(p):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+  --tw-text-opacity: 1;
+  color: hsl(var(--black) / var(--tw-text-opacity));
+}
+
+.prose-a\:text-black :is(:where(a):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
   --tw-text-opacity: 1;
   color: hsl(var(--black) / var(--tw-text-opacity));
 }
@@ -3860,6 +3883,16 @@ video {
 
 .prose-blockquote\:leading-relaxed :is(:where(blockquote):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
   line-height: 1.625;
+}
+
+.prose-strong\:text-black :is(:where(strong):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+  --tw-text-opacity: 1;
+  color: hsl(var(--black) / var(--tw-text-opacity));
+}
+
+.prose-li\:text-black :is(:where(li):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+  --tw-text-opacity: 1;
+  color: hsl(var(--black) / var(--tw-text-opacity));
 }
 
 .prose-hr\:my-10 :is(:where(hr):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
@@ -4333,4 +4366,14 @@ video {
 .dark\:prose-p\:text-white :is(:where(p):not(:where([class~="not-prose"],[class~="not-prose"] *))):where(.dark, .dark *) {
   --tw-text-opacity: 1;
   color: hsl(var(--white) / var(--tw-text-opacity));
+}
+
+.prose-a\:dark\:text-white:where(.dark, .dark *) :is(:where(a):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+  --tw-text-opacity: 1;
+  color: hsl(var(--white) / var(--tw-text-opacity));
+}
+
+.prose-a\:dark\:text-black:where(.dark, .dark *) :is(:where(a):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+  --tw-text-opacity: 1;
+  color: hsl(var(--black) / var(--tw-text-opacity));
 }

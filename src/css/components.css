@@ -47,7 +47,7 @@
     }
   }
   code {
-    @apply bg-[#1f2937] p-1 rounded-md text-white font-mono dark:bg-[#1f2937];
+    @apply bg-[#1f2937] p-1 rounded-md text-white dark:text-black font-mono dark:bg-[#1f2937];
   }
   a:not(.no-underline) {
     @apply bg-gradient-to-l from-black/75 to-black/75 has-transition
