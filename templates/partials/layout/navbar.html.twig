@@ -1,253 +1,168 @@
-<nav x-data="{ mobileMenuIsOpen: false, isVisible: true, lastScrollY: 0, search: false }"
-    @scroll.window="if (window.scrollY > lastScrollY && window.scrollY > 100) { isVisible = false } else { isVisible = true; } lastScrollY = window.scrollY"
-    :class="{'translate-y-0': isVisible, '-translate-y-full': !isVisible}"
-    class="w-full bg-opacity-80 backdrop-blur-md fixed top-0 left-0 z-20 flex items-center justify-between p-4 transition-transform duration-300 ease-in-out bg-white"
-    aria-label="menu">
-    <!-- Search Bar -->
-    <div>
-        <div class="h-14 md:flex items-center justify-between hidden w-full p-2 rounded-full">
-            <div>
-                <!-- Brand Logo -->
-                {% if uri.path == '/blog' %}
-                    <a href="{{ base_url }}/blog"
-                        class="text-neutral-900 hover:bg-gray-100 p-2 mr-1 text-2xl font-bold rounded-full cursor-pointer">
-                        <span>Peng<span class="text-black">ui</span>n</span>
-                    </a>
-                {% else %}
-                    <a href="{{ home_url }}"
-                        class="text-neutral-900 hover:bg-gray-100 p-2 mr-1 text-2xl font-bold rounded-full cursor-pointer">
-                        <span>Peng<span class="text-black">ui</span>n</span>
-                    </a>
-                {% endif %}
-                <!-- End Brand Logo -->
-            </div>
-            <button @click="search = true"
-                class="focus:outline-none focus:shadow-outline lg:text-sm bg-neutral-100 shrink w-full min-w-full py-4 pl-4 text-xs font-bold leading-tight text-left text-gray-700 uppercase rounded-full">
-                Search
-            </button>
-        </div>
+<nav
+	x-data="{ mobileMenuIsOpen: false, isVisible: true, lastScrollY: 0, search: false }" @scroll.window="if (window.scrollY > lastScrollY && window.scrollY > 100) { isVisible = false } else { isVisible = true; } lastScrollY = window.scrollY" :class="{'translate-y-0': isVisible, '-translate-y-full': !isVisible}" class="w-full bg-opacity-80 backdrop-blur-md fixed top-0 left-0 z-20 flex items-center justify-between p-4 transition-transform duration-300 ease-in-out bg-white" aria-label="menu">
+	<!-- Search Bar -->
+	<div>
+		<div class="h-14 md:flex items-center justify-between hidden w-full p-2 rounded-full">
+			<div>
+				<!-- Brand Logo -->
+				{% if uri.path == '/blog' %}
+					<a href="{{ base_url }}/blog" class="text-neutral-900 hover:bg-gray-100 p-2 mr-1 text-2xl font-bold rounded-full cursor-pointer">
+						<span>Peng<span class="text-black">ui</span>n</span>
+					</a>
+				{% else %}
+					<a href="{{ home_url }}" class="text-neutral-900 hover:bg-gray-100 p-2 mr-1 text-2xl font-bold rounded-full cursor-pointer">
+						<span>Peng<span class="text-black">ui</span>n</span>
+					</a>
+				{% endif %}
+				<!-- End Brand Logo -->
+			</div>
+			<button @click="search = true" class="focus:outline-none focus:shadow-outline lg:text-sm bg-neutral-100 shrink w-full min-w-full py-4 pl-4 text-xs font-bold leading-tight text-left text-gray-700 uppercase rounded-full">
+				Search
+			</button>
+		</div>
 
-        <div class="md:hidden h-14 flex items-center justify-between w-full p-2">
-            <div>
-                <!-- Brand Logo -->
-                {% if uri.path == '/blog' %}
-                    <a href="{{ base_url }}/blog"
-                        class="text-neutral-900 hover:bg-gray-100 p-2 mr-1 text-2xl font-bold rounded-full cursor-pointer">
-                        <span>Peng<span class="text-black">ui</span>n</span>
-                    </a>
-                {% else %}
-                    <a href="{{ home_url }}"
-                        class="text-neutral-900 hover:bg-gray-100 p-2 mr-1 text-2xl font-bold rounded-full cursor-pointer">
-                        <span>Peng<span class="text-black">ui</span>n</span>
-                    </a>
-                {% endif %}
-                <!-- End Brand Logo -->
-            </div>
-        </div>
+		<div class="md:hidden h-14 flex items-center justify-between w-full p-2">
+			<div>
+				<!-- Brand Logo -->
+				{% if uri.path == '/blog' %}
+					<a href="{{ base_url }}/blog" class="text-neutral-900 hover:bg-gray-100 p-2 mr-1 text-2xl font-bold rounded-full cursor-pointer">
+						<span>Peng<span class="text-black">ui</span>n</span>
+					</a>
+				{% else %}
+					<a href="{{ home_url }}" class="text-neutral-900 hover:bg-gray-100 p-2 mr-1 text-2xl font-bold rounded-full cursor-pointer">
+						<span>Peng<span class="text-black">ui</span>n</span>
+					</a>
+				{% endif %}
+				<!-- End Brand Logo -->
+			</div>
+		</div>
 
-{% include 'partials/components/searchbox.html.twig' %}
+		{% include 'partials/components/searchbox.html.twig' %}
+	</div>
 
-    <!-- Actions Container -->
-    <div class="flex items-center space-x-4">
-        <!-- Desktop Menu -->
-        <ul class="sm:flex items-center sm:gap-4 hidden">
-            {% for page in pages.children.visible %}
-                <li class="shrink-0">
-                    <a href="{{ page.url }}"
-                        class="underline-offset-2 hover:bg-stone-100 dark:hover:bg-zinc-700 px-3 py-1 rounded-2xl focus:outline-none focus:underline font-bold text-black"
-                        aria-current="page">
-                        {{ page.menu }}
-                    </a>
-                </li>
-            {% endfor %}
-        </ul> <!-- End Desktop Menu -->
-        <button @click="search = true"
-            class="hover:bg-stone-100 md:hidden dark:hover:bg-zinc-700 px-2 py-2 text-black rounded-full">
-            <svg class="w-6 h-6"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor">
-                <path fill-rule="evenodd"
-                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                    clip-rule="evenodd" />
-            </svg>
-        </button>
+	<!-- Actions Container -->
+	<div
+		class="flex items-center space-x-4">
+		<!-- Desktop Menu -->
+		<ul class="sm:flex items-center sm:gap-4 hidden">
+			{% for page in pages.children.visible %}
+				<li class="shrink-0">
+					<a href="{{ page.url }}" class="underline-offset-2 hover:bg-stone-100 dark:hover:bg-zinc-700 px-3 py-1 rounded-2xl focus:outline-none focus:underline font-bold text-black" aria-current="page">
+						{{ page.menu }}
+					</a>
+				</li>
+			{% endfor %}
+		</ul>
+		<!-- End Desktop Menu -->
+		<button @click="search = true" class="hover:bg-stone-100 md:hidden dark:hover:bg-zinc-700 px-2 py-2 text-black rounded-full">
+			<svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="currentColor">
+				<path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/>
+			</svg>
+		</button>
 
-        <button id="dark-mode"
-            class="hover:bg-stone-100 dark:hover:bg-zinc-700 focus:outline-none flex items-center justify-center text-center transition duration-300 rounded-full p-2 ">
-            <div id="icon-container" class="grid w-6 h-6">
-                <svg id="dark-icon"
-                    class="place-self-center fill-yellow-600 hidden w-6 h-6"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512">
-                    <path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z" />
-                </svg>
+		<button id="dark-mode" class="hover:bg-stone-100 dark:hover:bg-zinc-700 focus:outline-none flex items-center justify-center text-center transition duration-300 rounded-full p-2 ">
+			<div id="icon-container" class="grid w-6 h-6">
+				<svg id="dark-icon" class="place-self-center fill-yellow-600 hidden w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512">
+					<path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"/>
+				</svg>
 
-                <svg id="light-icon"
-                    class="place-self-center fill-yellow-600 hidden w-6 h-6"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512">
-                    <path d="M256 0c-13.3 0-24 10.7-24 24V88c0 13.3 10.7 24 24 24s24-10.7 24-24V24c0-13.3-10.7-24-24-24zm0 400c-13.3 0-24 10.7-24 24v64c0 13.3 10.7 24 24 24s24-10.7 24-24V424c0-13.3-10.7-24-24-24zM488 280c13.3 0 24-10.7 24-24s-10.7-24-24-24H424c-13.3 0-24 10.7-24 24s10.7 24 24 24h64zM112 256c0-13.3-10.7-24-24-24H24c-13.3 0-24 10.7-24 24s10.7 24 24 24H88c13.3 0 24-10.7 24-24zM437 108.9c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-45.3 45.3c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0L437 108.9zM154.2 357.8c-9.4-9.4-24.6-9.4-33.9 0L75 403.1c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l45.3-45.3c9.4-9.4 9.4-24.6 0-33.9zM403.1 437c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-45.3-45.3c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9L403.1 437zM154.2 154.2c9.4-9.4 9.4-24.6 0-33.9L108.9 75c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l45.3 45.3c9.4 9.4 24.6 9.4 33.9 0zM256 368a112 112 0 1 0 0-224 112 112 0 1 0 0 224z" />
-                </svg>
-            </div>
-        </button>
+				<svg id="light-icon" class="place-self-center fill-yellow-600 hidden w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512">
+					<path d="M256 0c-13.3 0-24 10.7-24 24V88c0 13.3 10.7 24 24 24s24-10.7 24-24V24c0-13.3-10.7-24-24-24zm0 400c-13.3 0-24 10.7-24 24v64c0 13.3 10.7 24 24 24s24-10.7 24-24V424c0-13.3-10.7-24-24-24zM488 280c13.3 0 24-10.7 24-24s-10.7-24-24-24H424c-13.3 0-24 10.7-24 24s10.7 24 24 24h64zM112 256c0-13.3-10.7-24-24-24H24c-13.3 0-24 10.7-24 24s10.7 24 24 24H88c13.3 0 24-10.7 24-24zM437 108.9c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-45.3 45.3c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0L437 108.9zM154.2 357.8c-9.4-9.4-24.6-9.4-33.9 0L75 403.1c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l45.3-45.3c9.4-9.4 9.4-24.6 0-33.9zM403.1 437c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-45.3-45.3c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9L403.1 437zM154.2 154.2c9.4-9.4 9.4-24.6 0-33.9L108.9 75c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l45.3 45.3c9.4 9.4 24.6 9.4 33.9 0zM256 368a112 112 0 1 0 0-224 112 112 0 1 0 0 224z"/>
+				</svg>
+			</div>
+		</button>
 
-        <!-- User Pic -->
-        <div x-data="{ userDropDownIsOpen: false, openWithKeyboard: false }"
-            @keydown.esc.window="userDropDownIsOpen = false, openWithKeyboard = false"
-            class="relative flex items-center">
-            <button @click="userDropDownIsOpen = ! userDropDownIsOpen"
-                :aria-expanded="userDropDownIsOpen"
-                @keydown.space.prevent="openWithKeyboard = true"
-                @keydown.enter.prevent="openWithKeyboard = true"
-                @keydown.down.prevent="openWithKeyboard = true"
-                class="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white rounded-full"
-                aria-controls="userMenu">
-                <img src="https://penguinui.s3.amazonaws.com/component-assets/avatar-8.webp"
-                    alt="User Profile"
-                    class="size-10 object-cover rounded-full" />
-            </button>
-            <!-- User Dropdown -->
-            <ul x-cloak
-                x-show="userDropDownIsOpen || openWithKeyboard"
-                x-transition.opacity
-                x-trap="openWithKeyboard"
-                @click.outside="userDropDownIsOpen = false, openWithKeyboard = false"
-                @keydown.down.prevent="$focus.wrap().next()"
-                @keydown.up.prevent="$focus.wrap().previous()"
-                id="userMenu"
-                class="absolute right-0 top-12 flex w-full min-w-[12rem] flex-col overflow-hidden rounded-md border border-neutral-300 bg-neutral-50 py-1.5 dark:border-neutral-700 dark:bg-neutral-900">
-                <li class="border-neutral-300 dark:border-neutral-700 border-b">
-                    <div class="flex flex-col px-4 py-2">
-                        <span class="text-neutral-900 dark:text-white text-sm font-medium">
-                            Alice Brown
-                        </span>
-                        <p class="text-neutral-600 dark:text-neutral-300 text-xs">
-                            alice.brown@gmail.com
-                        </p>
-                    </div>
-                </li>
-                <li>
-                    <a href="#"
-                        class="bg-neutral-50 text-neutral-600 hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white block px-4 py-2 text-sm">
-                        Dashboard
-                    </a>
-                </li>
-                <li>
-                    <a href="#"
-                        class="bg-neutral-50 text-neutral-600 hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white block px-4 py-2 text-sm">
-                        Subscription
-                    </a>
-                </li>
-                <li>
-                    <a href="#"
-                        class="bg-neutral-50 text-neutral-600 hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white block px-4 py-2 text-sm">
-                        Settings
-                    </a>
-                </li>
-                <li>
-                    <a href="#"
-                        class="bg-neutral-50 text-neutral-600 hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white block px-4 py-2 text-sm">
-                        Sign Out
-                    </a>
-                </li>
-            </ul> <!-- End User Dropdown -->
-        </div>
-        <!-- Mobile Menu Button -->
-        <button @click="mobileMenuIsOpen = !mobileMenuIsOpen"
-            :aria-expanded="mobileMenuIsOpen"
-            type="button"
-            class="text-neutral-600 dark:text-neutral-300 sm:hidden flex"
-            aria-label="mobile menu"
-            aria-controls="mobileMenu">
-            <svg x-cloak
-                x-show="!mobileMenuIsOpen"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                aria-hidden="true"
-                viewBox="0 0 24 24"
-                stroke-width="2"
-                stroke="currentColor"
-                class="size-6">
-                <path stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-            </svg>
-            <svg x-cloak
-                x-show="mobileMenuIsOpen"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                aria-hidden="true"
-                viewBox="0 0 24 24"
-                stroke-width="2"
-                stroke="currentColor"
-                class="size-6">
-                <path stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M6 18 18 6M6 6l12 12" />
-            </svg>
-        </button> <!-- End Mobile Menu Button -->
-    </div> <!-- End Actions Container -->
+		<!-- User Pic -->
+		<div x-data="{ userDropDownIsOpen: false, openWithKeyboard: false }" @keydown.esc.window="userDropDownIsOpen = false, openWithKeyboard = false" class="relative flex items-center">
+			<button @click="userDropDownIsOpen = ! userDropDownIsOpen" :aria-expanded="userDropDownIsOpen" @keydown.space.prevent="openWithKeyboard = true" @keydown.enter.prevent="openWithKeyboard = true" @keydown.down.prevent="openWithKeyboard = true" class="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:focus-visible:outline-white rounded-full" aria-controls="userMenu">
+				<img src="https://penguinui.s3.amazonaws.com/component-assets/avatar-8.webp" alt="User Profile" class="size-10 object-cover rounded-full"/>
+			</button>
+			<!-- User Dropdown -->
+			<ul x-cloak x-show="userDropDownIsOpen || openWithKeyboard" x-transition.opacity x-trap="openWithKeyboard" @click.outside="userDropDownIsOpen = false, openWithKeyboard = false" @keydown.down.prevent="$focus.wrap().next()" @keydown.up.prevent="$focus.wrap().previous()" id="userMenu" class="absolute right-0 top-12 flex w-full min-w-[12rem] flex-col overflow-hidden rounded-md border border-neutral-300 bg-neutral-50 py-1.5 dark:border-neutral-700 dark:bg-neutral-900">
+				<li class="border-neutral-300 dark:border-neutral-700 border-b">
+					<div class="flex flex-col px-4 py-2">
+						<span class="text-neutral-900 dark:text-white text-sm font-medium">
+							Alice Brown
+						</span>
+						<p class="text-neutral-600 dark:text-neutral-300 text-xs">
+							alice.brown@gmail.com
+						</p>
+					</div>
+				</li>
+				<li>
+					<a href="#" class="bg-neutral-50 text-neutral-600 hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white block px-4 py-2 text-sm">
+						Dashboard
+					</a>
+				</li>
+				<li>
+					<a href="#" class="bg-neutral-50 text-neutral-600 hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white block px-4 py-2 text-sm">
+						Subscription
+					</a>
+				</li>
+				<li>
+					<a href="#" class="bg-neutral-50 text-neutral-600 hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white block px-4 py-2 text-sm">
+						Settings
+					</a>
+				</li>
+				<li>
+					<a href="#" class="bg-neutral-50 text-neutral-600 hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-none dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white block px-4 py-2 text-sm">
+						Sign Out
+					</a>
+				</li>
+			</ul>
+			<!-- End User Dropdown -->
+		</div>
+		<!-- Mobile Menu Button -->
+		<button @click="mobileMenuIsOpen = !mobileMenuIsOpen" :aria-expanded="mobileMenuIsOpen" type="button" class="text-neutral-600 dark:text-neutral-300 sm:hidden flex" aria-label="mobile menu" aria-controls="mobileMenu">
+			<svg x-cloak x-show="!mobileMenuIsOpen" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true" viewbox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-6">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+			</svg>
+			<svg x-cloak x-show="mobileMenuIsOpen" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true" viewbox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-6">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+			</svg>
+		</button>
+		<!-- End Mobile Menu Button -->
+	</div>
+	<!-- End Actions Container -->
 
-    <!-- Mobile Menu -->
-    <template x-teleport="body">
-        <div x-show="mobileMenuIsOpen"
-            @keydown.window.escape="mobileMenuIsOpen=false"
-            class="fixed z-50">
-            <div x-show="mobileMenuIsOpen"
-                x-transition.opacity.duration.600ms
-                @click="mobileMenuIsOpen = false"
-                class="bg-opacity-10 fixed inset-0 bg-black"></div>
-            <div class="fixed overflow-hidden">
-                <div class="absolute inset-0 overflow-hidden">
-                    <div class="fixed inset-y-0 right-0 flex max-w-full pl-10">
-                        <div x-show="mobileMenuIsOpen"
-                            @click.away="mobileMenuIsOpen = false"
-                            x-transition:enter="transform transition ease-in-out duration-500 sm:duration-700"
-                            x-transition:enter-start="translate-x-full"
-                            x-transition:enter-end="translate-x-0"
-                            x-transition:leave="transform transition ease-in-out duration-500 sm:duration-700"
-                            x-transition:leave-start="translate-x-0"
-                            x-transition:leave-end="translate-x-full"
-                            class="w-screen max-w-md">
-                            <div class="border-neutral-100/70 flex flex-col h-full py-5 overflow-y-scroll bg-white border-l shadow-lg">
-                                <div class="sm:px-5 px-4">
-                                    <div class="flex items-start justify-between pb-1">
-                                        <h2 class="text-base font-semibold leading-6 text-gray-900"
-                                            id="slide-over-title">
-                                            Slide Over Title
-                                        </h2>
-                                        <div class="flex items-center h-auto ml-3">
-                                            <button @click="mobileMenuIsOpen=false"
-                                                class="border-neutral-200 text-neutral-600 hover:bg-neutral-100 absolute top-0 right-0 z-30 flex items-center justify-center px-3 py-2 mt-4 mr-5 space-x-1 text-xs font-medium uppercase border rounded-md">
-                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                    fill="none"
-                                                    viewBox="0 0 24 24"
-                                                    stroke-width="1.5"
-                                                    stroke="currentColor"
-                                                    class="w-4 h-4">
-                                                    <path stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        d="M6 18L18 6M6 6l12 12"></path>
-                                                </svg>
-                                                <span>Close</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="sm:px-5 relative flex-1 px-4 mt-5">
-                                    <div class="sm:px-5 absolute inset-0 px-4">
-                                        <div class="border-neutral-300 relative h-full overflow-hidden border border-dashed rounded-md">
-                                            <!-- Content can be added here -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <!-- End Mobile Menu -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </template>
-    <!-- prettier-ignore-end -->
+	<!-- Mobile Menu -->
+	<template x-teleport="body">
+		<div x-show="mobileMenuIsOpen" @keydown.window.escape="mobileMenuIsOpen=false" class="fixed z-50">
+			<div x-show="mobileMenuIsOpen" x-transition.opacity.duration.600ms @click="mobileMenuIsOpen = false" class="bg-opacity-10 fixed inset-0 bg-black"></div>
+			<div class="fixed overflow-hidden">
+				<div class="absolute inset-0 overflow-hidden">
+					<div class="fixed inset-y-0 right-0 flex max-w-full pl-10">
+						<div x-show="mobileMenuIsOpen" @click.away="mobileMenuIsOpen = false" x-transition:enter="transform transition ease-in-out duration-500 sm:duration-700" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transform transition ease-in-out duration-500 sm:duration-700" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full" class="w-screen max-w-md">
+							<div class="border-neutral-100/70 flex flex-col h-full py-5 overflow-y-scroll bg-white border-l shadow-lg">
+								<div class="sm:px-5 px-4">
+									<div class="flex items-start justify-between pb-1">
+										<h2 class="text-base font-semibold leading-6 text-gray-900" id="slide-over-title">
+											Slide Over Title
+										</h2>
+										<div class="flex items-center h-auto ml-3">
+											<button @click="mobileMenuIsOpen=false" class="border-neutral-200 text-neutral-600 hover:bg-neutral-100 absolute top-0 right-0 z-30 flex items-center justify-center px-3 py-2 mt-4 mr-5 space-x-1 text-xs font-medium uppercase border rounded-md">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+													<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+												</svg>
+												<span>Close</span>
+											</button>
+										</div>
+									</div>
+								</div>
+								<div class="sm:px-5 relative flex-1 px-4 mt-5">
+									<div class="sm:px-5 absolute inset-0 px-4">
+										<div
+											class="border-neutral-300 relative h-full overflow-hidden border border-dashed rounded-md"><!-- Content can be added here -->
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- End Mobile Menu -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
+	<!-- prettier-ignore-end -->
 </nav>

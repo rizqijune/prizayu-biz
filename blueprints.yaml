@@ -15,7 +15,7 @@ readme: https://pnya.my.id/projects/grav/grav-theme-prizayu-biz/documentation
 license: MIT
 
 dependencies:
-- {name: grav, version: '>=1.7.0'}
+- { name: grav, version: '>=1.7.0' }
 - langswitcher
 - taxonomylist
 - error
@@ -24,7 +24,7 @@ dependencies:
 - readingtime
 - page-toc
 - prizayu-plugin
-
+- simplesearch
 form:
   validation: loose
   fields:
