@@ -38,9 +38,9 @@
 					</div>
 					<!-- Search Form -->
 					<form method="get" name="search" data-simplesearch-form class="flex w-full" action="{{ base_url_absolute }}/search" x-data="{ query: '', minChars: {{ min_chars }} }">
-						<input x-model="query" name="query" class="search-input flex-shrink focus:outline-none focus:shadow-outline lg:text-sm bg-zinc-100 dark:bg-zinc-700 w-full py-4 pl-4 text-xs font-bold leading-tight text-gray-700 antialiased rounded-full" type="text" aria-label="search" placeholder="{{ 'PNYA.BLOG.THEME.SEARCH' |t |e }}" required/>
+						<input x-model="query" name="query" class="search-input flex-shrink focus:outline-none focus:shadow-outline lg:text-sm bg-zinc-100 dark:bg-zinc-700 w-full py-4 pl-4 text-xs font-bold leading-tight text-black/50 antialiased rounded-full" type="text" aria-label="search" placeholder="{{ 'PNYA.BLOG.THEME.SEARCH' |t |e }}" required/>
 						<small :class="{ 'block': query.length < minChars }" class="hidden pl-0.5 text-red-500">Error: Name field is required</small>
-						<button type="submit" class="hover:bg-secondary mx-2 bg-primary rounded-full cursor-pointer p-3 flex items-center justify-center" :disabled="query.length < minChars" :class="{ 'opacity-50 cursor-not-allowed': query.length < minChars }">
+						<button type="submit" class="hover:bg-primary/70 mx-2 bg-primary rounded-full cursor-pointer p-3 flex items-center justify-center" :disabled="query.length < minChars" :class="{ 'opacity-50 disabled:cursor-not-allowed hover:bg-primary/30': query.length < minChars }">
 							<svg class="w-6 h-6 text-white dark:text-black" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="currentColor">
 								<path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/>
 							</svg>
@@ -49,24 +49,24 @@
 					{# Search Input #}
 				</div>
 				<!-- Grid Layout (Centered and updated) -->
-				<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 justify-items-center">
-					<div class="border w-full p-4 text-center rounded-lg shadow-md">
+				<div class="text-black grid grid-cols-1 sm:grid-cols-2 gap-6 justify-items-center">
+					<div class="hover border w-full p-4 text-center rounded-lg shadow-md">
 						<p class="font-bold">Card 1</p>
 						<p>Some card content here</p>
 					</div>
-					<div class="border w-full p-4 text-center rounded-lg shadow-md">
+					<div class="border hover w-full p-4 text-center rounded-lg shadow-md">
 						<p class="font-bold">Card 2</p>
 						<p>Some card content here</p>
 					</div>
-					<div class="border w-full p-4 text-center rounded-lg shadow-md">
+					<div class="border w-full hover p-4 text-center rounded-lg shadow-md">
 						<p class="font-bold">Card 3</p>
 						<p>Some card content here</p>
 					</div>
-					<div class="border w-full p-4 text-center rounded-lg shadow-md">
+					<div class="border w-full p-4 hover text-center rounded-lg shadow-md">
 						<p class="font-bold">Card 4</p>
 						<p>Some card content here</p>
 					</div>
-					<div class="border w-full p-4 text-center rounded-lg shadow-md col-span-2 sm:col-span-1 xl:col-span-2">
+					<div class="border w-full p-4 hover text-center rounded-lg shadow-md col-span-2">
 						<p class="font-bold">Advertising Here</p>
 						<p>Ad space content</p>
                     </div>

@@ -100,6 +100,18 @@ h6 {
   -webkit-text-fill-color: #000;
   -webkit-box-shadow: 0 0 0px 1000px #E7E5D4 inset;
 }
+.hover {
+  cursor: pointer;
+  border-width: 1px;
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  --tw-shadow-color: hsl(var(--primary) / 1);
+  --tw-shadow: var(--tw-shadow-colored);
+}
+.hover:hover {
+  border-style: none;
+}
 
 .content {
   --tw-text-opacity: 1;
@@ -1806,6 +1818,9 @@ video {
 .col-span-2 {
   grid-column: span 2 / span 2;
 }
+.col-span-1 {
+  grid-column: span 1 / span 1;
+}
 .-m-2 {
   margin: -0.5rem;
 }
@@ -2566,6 +2581,9 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(244 244 245 / var(--tw-bg-opacity));
 }
+.bg-primary\/30 {
+  background-color: hsl(var(--primary) / 0.3);
+}
 .bg-opacity-10 {
   --tw-bg-opacity: 0.1;
 }
@@ -3005,6 +3023,9 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: hsl(var(--white) / var(--tw-text-opacity));
+}
+.text-black\/50 {
+  color: hsl(var(--black) / 0.5);
 }
 .underline {
   text-decoration-line: underline;
@@ -3593,6 +3614,10 @@ video {
   border-width: 0px;
 }
 
+.hover\:border-none:hover {
+  border-style: none;
+}
+
 .hover\:bg-gray-100:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
@@ -3637,6 +3662,14 @@ video {
 
 .hover\:bg-zinc-950\/15:hover {
   background-color: rgb(9 9 11 / 0.15);
+}
+
+.hover\:bg-primary\/30:hover {
+  background-color: hsl(var(--primary) / 0.3);
+}
+
+.hover\:bg-primary\/70:hover {
+  background-color: hsl(var(--primary) / 0.7);
 }
 
 .hover\:text-black:hover {
@@ -3966,6 +3999,14 @@ video {
 
   .sm\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sm\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .sm\:grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
   }
 
   .sm\:flex-row {

@@ -10,6 +10,9 @@
   -webkit-text-fill-color: #000;
   -webkit-box-shadow: 0 0 0px 1000px #E7E5D4 inset;
 }
+.hover {
+@apply border hover:border-none shadow-md shadow-primary cursor-pointer
+}
 
 .content {
   @apply text-[#6e6c56];
