@@ -17,5 +17,5 @@ package-lock.json
 
 #!.yarn/cache
 .pnp.*
-/css/
-/js/
+# /css/
+# /js/
