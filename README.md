@@ -1,11 +1,41 @@
+<div align="center">
+	<img width="100" height="100" src="https://i.ibb.co.com/jbcm207/Logo-Rounded-Violet-300.png" alt="PNYA LOGO">
+	<br>
+	<h1>Prizayu Biz</h1>
+	<sub>Crafted with ❤︎ by <a href="https://github.com/rizqijune">rizqijune</a> under the <a href="https://pnya.my.id">PNYA•ID</a></sub>
+</div>
+<hr/>
+<p align="center">✨ <strong>A theme for GravCMS</strong></p>
+<h3 align="center"> <strong> NOTE: Recommended for dev only</h3>
+
+<p align="center">
+  <a href="https://github.com/feross/standard">
+    <img src="https://img.shields.io/badge/code%20style-standard-green.svg?style=flat-square" alt="">
+  </a>
+  <a href="https://opensource.org/licenses/MIT">
+    <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT">
+  </a>
+  <a href="https://getgrav.org">
+    <img src="https://img.shields.io/badge/Made%20for-Grav-blue" alt="Made for Grav">
+  </a>
+  <a href="https://tailwindcss.com">
+    <img src="https://img.shields.io/badge/Powered%20by-TailwindCSS-06B6D4" alt="Powered by TailwindCSS">
+  </a>
+  <a href="https://alpinejs.dev">
+    <img src="https://img.shields.io/badge/Powered%20by-Alpine.js-2D323E" alt="Alpine.js">
+  </a>
+</p>
+
 # Prizayu Biz Theme 🚀
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Made for Grav](https://img.shields.io/badge/Made%20for-Grav-blue)](https://getgrav.org)
-[![Powered by TailwindCSS](https://img.shields.io/badge/Powered%20by-TailwindCSS-06B6D4)](https://tailwindcss.com)
-[![Alpine.js](https://img.shields.io/badge/Alpine.js-2D323E)](https://alpinejs.dev)
+| ![Desktop](/home/rizqijune/public_html/user/themes/prizayu-biz/screenshot.jpeg) | <img src="/home/rizqijune/public_html/user/themes/prizayu-biz/screenshot-rocks.png" alt="Mobile" style="zoom:50%;" /> |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
 
-A modern, fast, and customizable theme for startups and small businesses, crafted with ❤️ by [rizqijune](https://github.com/rizqijune) under the [PNYA•ID](https://pnya.my.id) brand.
+
+
+
+
+A modern, fast, and customizable theme for startups and small businesses.
 
 ## ✨ Features
 
