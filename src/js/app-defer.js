@@ -14,10 +14,6 @@ window.Alpine = Alpine
 Alpine.plugin(focus)
 Alpine.start()
 
-
-
-
-// Immediately check localStorage and apply styles
 const doc = document.documentElement;
 const isDarkmode = window.localStorage.getItem("ui-mode") === "dark";
 if (isDarkmode) {
@@ -29,7 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const darkIcon = document.getElementById("dark-icon");
     const lightIcon = document.getElementById("light-icon");
 
-    // Toggle dark mode and update local storage
     function toggleDarkMode() {
         const currentMode = window.localStorage.getItem("ui-mode");
         const newMode = currentMode === "dark" ? "light" : "dark";
@@ -47,7 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
         toggleDarkMode();
     });
 
-    // Initialize UI based on current mode
     updateUI(window.localStorage.getItem("ui-mode"));
 });
 

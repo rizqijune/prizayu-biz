@@ -27,8 +27,6 @@ lightbox.init();
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_2__["default"];
 alpinejs__WEBPACK_IMPORTED_MODULE_2__["default"].plugin(_alpinejs_focus__WEBPACK_IMPORTED_MODULE_3__["default"]);
 alpinejs__WEBPACK_IMPORTED_MODULE_2__["default"].start();
-
-// Immediately check localStorage and apply styles
 var doc = document.documentElement;
 var isDarkmode = window.localStorage.getItem("ui-mode") === "dark";
 if (isDarkmode) {
@@ -38,8 +36,6 @@ document.addEventListener("DOMContentLoaded", function () {
   var darkSwitch = document.getElementById("dark-mode");
   var darkIcon = document.getElementById("dark-icon");
   var lightIcon = document.getElementById("light-icon");
-
-  // Toggle dark mode and update local storage
   function toggleDarkMode() {
     var currentMode = window.localStorage.getItem("ui-mode");
     var newMode = currentMode === "dark" ? "light" : "dark";
@@ -54,8 +50,6 @@ document.addEventListener("DOMContentLoaded", function () {
   darkSwitch.addEventListener("click", function () {
     toggleDarkMode();
   });
-
-  // Initialize UI based on current mode
   updateUI(window.localStorage.getItem("ui-mode"));
 });
 
