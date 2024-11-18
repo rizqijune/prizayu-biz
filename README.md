@@ -45,7 +45,7 @@ A modern, fast, and customizable theme for startups and small businesses, crafte
    git clone https://github.com/rizqijune/prizayu-biz.git
    ```
 
-3. Activate the theme in Grav:
+2. Activate the theme in Grav:
    - Navigate to `Admin Panel > System > Theme`
    - Select "Prizayu Biz"
    - Save changes
