@@ -15,8 +15,10 @@ Alpine.plugin(focus)
 Alpine.start()
 
 const doc = document.documentElement;
-const isDarkmode = window.localStorage.getItem("ui-mode") === "dark";
-if (isDarkmode) {
+
+// Check if "ui-mode" is stored in localStorage, default to "light" if not
+const currentMode = window.localStorage.getItem("ui-mode") || "light";
+if (currentMode === "dark") {
     doc.classList.add("dark");
 }
 
@@ -25,23 +27,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const darkIcon = document.getElementById("dark-icon");
     const lightIcon = document.getElementById("light-icon");
 
+    // Toggle dark mode when the button is clicked
     function toggleDarkMode() {
-        const currentMode = window.localStorage.getItem("ui-mode");
-        const newMode = currentMode === "dark" ? "light" : "dark";
+        const newMode = doc.classList.contains("dark") ? "light" : "dark";
         doc.classList.toggle("dark", newMode === "dark");
         window.localStorage.setItem("ui-mode", newMode);
         updateUI(newMode);
     }
 
+    // Update the UI to reflect the current mode
     function updateUI(mode) {
         darkIcon.classList.toggle("hidden", mode === "light");
         lightIcon.classList.toggle("hidden", mode === "dark");
     }
 
-    darkSwitch.addEventListener("click", () => {
-        toggleDarkMode();
-    });
+    // Add event listener for the dark mode switch
+    darkSwitch.addEventListener("click", toggleDarkMode);
 
-    updateUI(window.localStorage.getItem("ui-mode"));
+    // Initialize UI based on current mode
+    updateUI(currentMode);
 });
 

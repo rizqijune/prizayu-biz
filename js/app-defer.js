@@ -28,29 +28,36 @@ window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_2__["default"];
 alpinejs__WEBPACK_IMPORTED_MODULE_2__["default"].plugin(_alpinejs_focus__WEBPACK_IMPORTED_MODULE_3__["default"]);
 alpinejs__WEBPACK_IMPORTED_MODULE_2__["default"].start();
 var doc = document.documentElement;
-var isDarkmode = window.localStorage.getItem("ui-mode") === "dark";
-if (isDarkmode) {
+
+// Check if "ui-mode" is stored in localStorage, default to "light" if not
+var currentMode = window.localStorage.getItem("ui-mode") || "light";
+if (currentMode === "dark") {
   doc.classList.add("dark");
 }
 document.addEventListener("DOMContentLoaded", function () {
   var darkSwitch = document.getElementById("dark-mode");
   var darkIcon = document.getElementById("dark-icon");
   var lightIcon = document.getElementById("light-icon");
+
+  // Toggle dark mode when the button is clicked
   function toggleDarkMode() {
-    var currentMode = window.localStorage.getItem("ui-mode");
-    var newMode = currentMode === "dark" ? "light" : "dark";
+    var newMode = doc.classList.contains("dark") ? "light" : "dark";
     doc.classList.toggle("dark", newMode === "dark");
     window.localStorage.setItem("ui-mode", newMode);
     updateUI(newMode);
   }
+
+  // Update the UI to reflect the current mode
   function updateUI(mode) {
     darkIcon.classList.toggle("hidden", mode === "light");
     lightIcon.classList.toggle("hidden", mode === "dark");
   }
-  darkSwitch.addEventListener("click", function () {
-    toggleDarkMode();
-  });
-  updateUI(window.localStorage.getItem("ui-mode"));
+
+  // Add event listener for the dark mode switch
+  darkSwitch.addEventListener("click", toggleDarkMode);
+
+  // Initialize UI based on current mode
+  updateUI(currentMode);
 });
 
 /***/ })
