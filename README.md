@@ -28,8 +28,8 @@
 
 # Prizayu Biz Theme 🚀
 
-| ![Desktop](/home/rizqijune/public_html/user/themes/prizayu-biz/screenshot.jpeg) | <img src="/home/rizqijune/public_html/user/themes/prizayu-biz/screenshot-rocks.png" alt="Mobile" style="zoom:50%;" /> |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| ![Desktop](./screenshot.jpeg) | <img src="./screenshot-rocks.png" alt="Mobile" style="zoom:50%;" /> |
+| ----------------------------- | ------------------------------------------------------------ |
 
 
 
