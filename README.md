@@ -26,6 +26,7 @@ A modern, fast, and customizable theme for startups and small businesses, crafte
   - List your products
   - Redirect to external stores
   - No built-in payment processing
+  - Integrate with [Sell.app](https://sell.app) (Possibility)
 - 💬 Custom comment system (in progress)
 - 📱 Mobile-first design approach
 - 🔍 SEO optimized
@@ -42,12 +43,6 @@ A modern, fast, and customizable theme for startups and small businesses, crafte
    ```bash
    cd user/themes/
    git clone https://github.com/rizqijune/prizayu-biz.git
-   ```
-
-2. Install dependencies:
-   ```bash
-   cd prizayu-biz
-   yarn install
    ```
 
 3. Activate the theme in Grav:
@@ -77,7 +72,7 @@ A modern, fast, and customizable theme for startups and small businesses, crafte
 
 ## 📋 To-Do List
 
-- [ ] Complete custom comment system
+- [ ] Custom comment system
 - [ ] Enhance documentation
 - [ ] Add more blog templates
 - [ ] Implement search functionality
@@ -85,6 +80,7 @@ A modern, fast, and customizable theme for startups and small businesses, crafte
 - [ ] Add more product showcase options
 - [ ] Implement caching strategy
 - [ ] Add more shortcodes
+- [ ] Sell.app integration
 - [ ] Create demo content
 - [ ] Write unit tests
 
@@ -92,9 +88,9 @@ A modern, fast, and customizable theme for startups and small businesses, crafte
 
 If you find this theme helpful, consider supporting its development with crypto:
 
-- Bitcoin (BTC): `bc1q...` (add your address)
-- Ethereum (ETH): `0x...` (add your address)
-- Polygon (MATIC): `0x...` (add your address)
+- EVM (ETH, POL, BNB) : [rizqijune.nft](https://ud.me/rizqijune.nft)
+- NEAR :  SOON
+- TON :  SOON
 
 ## 📄 License
 
@@ -121,5 +117,5 @@ Contributions, issues, and feature requests are welcome! Feel free to check the 
 
 Need help? You can:
 - Open an issue on GitHub
-- Contact us at [your-email]
-- Visit our website [pnya.id](https://pnya.id)
+- Contact us at [rizqijune@pm.me]
+- Visit our website [PNYA ID](https://pnya.my.id)
