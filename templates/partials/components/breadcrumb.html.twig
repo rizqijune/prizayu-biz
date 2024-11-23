@@ -34,7 +34,7 @@
 
 {% if breadcrumbs|length > 1 %}
 	{# We are using RDFa standard  #}
-	<nav x-data="{breadsY: '0px', breads: true}" :class="{ 'translate-y-0': breads, '-translate-y-[88px]': !breads }" @scroll.window="if (window.scrollY > breadsY && window.scrollY > 100) { breads = false } else { breads = true; } breadsY = window.scrollY" id="breadcrumbs" aria-label="breadcrumb" class="bg-opacity-80 backdrop-blur-md backdrop-filter flex fixed top-[88px] left-0 z-20 w-full text-sm font-medium transition-transform duration-300 ease-in-out bg-white">
+	<nav x-data="{breadsY: '0px', breads: true}" :class="{ 'translate-y-0': breads, '-translate-y-[88px]': !breads }" @scroll.window="if (window.scrollY > breadsY && window.scrollY > 100) { breads = false } else { breads = true; } breadsY = window.scrollY" id="breadcrumbs" aria-label="breadcrumb" class="bg-opacity-80 backdrop-blur-md backdrop-filter flex fixed top-[88px] left-0 z-20 w-full text-sm p-1 rounded-b-md font-medium transition-transform duration-300 ease-in-out bg-white">
 		<ol vocab="https://schema.org/" typeof="BreadcrumbList" class="md:space-x-2 rtl:space-x-reverse inline-flex items-center ml-6 space-x-2">
 			<li property="itemListElement" typeof="ListItem" class="inline-flex items-center">
 				<a property="item" typeof="WebPage" href="{{ base_url }}" class="hover:text-primary group inline-flex items-center text-sm font-medium text-black">
