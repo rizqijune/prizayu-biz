@@ -3,7 +3,7 @@ html {
 }
 
 :root {
-    --background: 60 100% 100%;
+    --background: 260 18% 97%;
 
     --border: 0 0% 73%;
     --card: 0 0% 83%;
@@ -16,7 +16,7 @@ html {
 }
 
 .dark {
-  --background: 210 30% 10%; 
+  --background: 263 33% 8%; 
   --border: 0 0% 30%; 
   --card: 0 0% 15%;
   --primary: 253 83% 77%;
@@ -35,15 +35,15 @@ h3,
 h4,
 h5,
 h6 {
-    @apply text-black font-primary;
+    @apply font-primary text-black;
 }
 
 ::-moz-selection {
-    @apply text-white bg-primary;
+    @apply bg-primary text-white;
 }
 
 ::selection {
-    @apply text-white bg-primary;
+    @apply bg-primary text-white;
 }
 
 @media screen and (min-width: 767px) {

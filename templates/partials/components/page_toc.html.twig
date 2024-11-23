@@ -4,7 +4,7 @@
 
         <a class="{{ class }} flex flex-row mt-4 hover:bg-zinc-950/15 rounded-xl text-black px-2 py-1"
             href="{{ item.uri }}">
-            <div class="w-6 h-6 text-center bg-center rounded-full shadow-2xl fill-current stroke-none bg-gradient-to-tl from-green-600 to-lime-400">
+            <div class="stroke-none bg-gradient-to-tl from-green-600 to-lime-400 w-6 h-6 text-center bg-center rounded-full shadow-2xl fill-current">
                 <div class="icon-adn w-6 h-6"></div>
             </div>
             <span class="self-center ml-2">{{ item.label|raw }}</span>
@@ -17,12 +17,12 @@
 {% endmacro %}
 
 {% if active or toc_config_var('active') %}
-    <div class="w-full max-w-full px-3 mb-6 page-toc lg:mb-0 shrink-0">
-        <div class="relative flex flex-col min-w-0 break-words border-0 bg-clip-border">
+    <div class="page-toc lg:mb-0 shrink-0 w-full max-w-full px-3 mb-6">
+        <div class="bg-clip-border relative flex flex-col min-w-0 break-words border-0">
             {% set table_of_contents = toc_items(page.content) %}
             {% if table_of_contents is not empty %}
-                <div class="flex-auto pt-0 text-center lg:text-left">
-                    <div class="flex flex-col p-2 item-center">
+                <div class="lg:text-left flex-auto pt-0 text-center">
+                    <div class="item-center max-h-64 hover:overflow-y-auto flex flex-col p-2 overflow-y-hidden">
                         {{ _self.toc_loop(table_of_contents.children) }}
                     </div>
                 </div>

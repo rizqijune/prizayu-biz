@@ -23,8 +23,9 @@ dependencies:
 - breadcrumbs
 - readingtime
 - page-toc
-- prizayu-plugin
 - simplesearch
+- admin
+
 form:
   validation: loose
   fields:

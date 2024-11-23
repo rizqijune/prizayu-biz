@@ -37,8 +37,8 @@
 	<nav x-data="{breadsY: '0px', breads: true}" :class="{ 'translate-y-0': breads, '-translate-y-[88px]': !breads }" @scroll.window="if (window.scrollY > breadsY && window.scrollY > 100) { breads = false } else { breads = true; } breadsY = window.scrollY" id="breadcrumbs" aria-label="breadcrumb" class="bg-opacity-80 backdrop-blur-md backdrop-filter flex fixed top-[88px] left-0 z-20 w-full text-sm font-medium transition-transform duration-300 ease-in-out bg-white">
 		<ol vocab="https://schema.org/" typeof="BreadcrumbList" class="md:space-x-2 rtl:space-x-reverse inline-flex items-center ml-6 space-x-2">
 			<li property="itemListElement" typeof="ListItem" class="inline-flex items-center">
-				<a property="item" typeof="WebPage" href="{{ base_url }}" class="hover:text-blue-600 dark:text-gray-400 dark:hover:text-white inline-flex items-center text-sm font-medium text-gray-700">
-					<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" aria-hidden="true" class="size-4">
+				<a property="item" typeof="WebPage" href="{{ base_url }}" class="hover:text-primary group inline-flex items-center text-sm font-medium text-black">
+					<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" aria-hidden="true" class="size-4 fill-black group-hover:fill-primary">
 						<path fill-rule="evenodd" clip-rule="evenodd" d="M9.293 2.293a1 1 0 0 1 1.414 0l7 7A1 1 0 0 1 17 11h-1v6a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-6H3a1 1 0 0 1-.707-1.707l7-7Z"/>
 					</svg>
 					<span property="name" class="ml-2">Home</span>
@@ -47,7 +47,7 @@
 			</li>
 			{% for breadcrumb in breadcrumbs %}
 				<li property="itemListElement" typeof="ListItem" class="flex items-center">
-					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" aria-hidden="true" stroke-width="2" stroke="currentColor" class="size-4">
+					<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" aria-hidden="true" stroke-width="2" stroke="currentColor" class="size-4 text-black" fill="none">
 						<path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/>
 					</svg>
 					{% if loop.last %}
@@ -55,7 +55,7 @@
 							{{ breadcrumb.title }}</span>
 						<meta property="position" content="{{ loop.index + 1 }}">
 					{% else %}
-						<a property="item" typeof="WebPage" href="{{ breadcrumb.url }}" class="ms-1 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white text-sm font-medium text-gray-700">
+						<a property="item" typeof="WebPage" href="{{ breadcrumb.url }}" class="ms-1 hover:text-primary md:ms-2 text-sm font-medium text-black">
 							<span property="name">{{ breadcrumb.title }}</span>
 						</a>
 						<meta property="position" content="{{ loop.index + 1 }}">

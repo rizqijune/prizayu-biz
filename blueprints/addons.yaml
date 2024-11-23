@@ -1,0 +1,19 @@
+form:
+  fields:
+    tabs:
+      fields:
+        options:
+          type: tab
+
+          fields:
+            header.pzsection:
+              type: section
+              title: PNYA Option
+              underline: true
+
+              fields:
+                header.pzauthor:
+                  toggleable: true
+                  type: text
+                  label: Author Name
+                  size: x-small
