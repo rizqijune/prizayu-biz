@@ -3,6 +3,7 @@
     "arcanis.vscode-zipfs",
     "esbenp.prettier-vscode",
     "aaron-bond.better-comments",
-    "andygongea.update-now"
+    "andygongea.update-now",
+    "standard.vscode-standard"
   ]
 }
