@@ -46,8 +46,9 @@
 		<!-- Desktop Menu -->
 		<ul class="sm:flex sm:gap-4 items-center hidden">
 			{% for page in pages.children.visible %}
+			{% set current_page = (page.active or page.activeChild) ? 'bg-stone-100 dark:bg-zinc-700' : '' %}
 				<li class="shrink-0">
-					<a href="{{ page.url }}" class="underline-offset-2 hover:bg-stone-100 dark:hover:bg-zinc-700 rounded-2xl focus:outline-none focus:underline px-3 py-1 font-bold text-black" aria-current="page">
+					<a href="{{ page.url|e }}" class="underline-offset-2 hover:bg-stone-100 {{ current_page }} dark:hover:bg-zinc-700 rounded-2xl focus:outline-none focus:underline px-3 py-1 font-bold text-black" aria-current="page">
 						{{ page.menu }}
 					</a>
 				</li>
