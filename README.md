@@ -9,9 +9,9 @@
 <h3 align="center"> <strong> NOTE: Recommended for dev only</h3>
 
 <p align="center">
-  <a href="https://github.com/feross/custom">
+  <!--a href="https://github.com/feross/standard">
     <img src="https://img.shields.io/badge/code%20style-standard-purple.svg?style=flat-square" alt="">
-  </a>
+  </a-->
   <a href="https://opensource.org/licenses/MIT">
     <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT">
   </a>
@@ -26,6 +26,7 @@
   </a>
 </p>
 
+
 # Prizayu Biz Theme 🚀
 
 | ![Desktop](./screenshot.jpeg) | <img src="./screenshot-rocks.png" alt="Mobile" style="zoom:50%;" /> |
@@ -36,6 +37,12 @@
 
 
 A modern, fast, and customizable theme for startups and small businesses.
+
+
+
+> [!CAUTION]
+>
+> The alpha phase will remain free! so fork  this while its still in public repo.  After released, this repo will only contain production build. The dev build will be available for donator.
 
 ## ✨ Features
 
@@ -102,17 +109,7 @@ A modern, fast, and customizable theme for startups and small businesses.
 
 ## 📋 To-Do List
 
-- [ ] Custom comment system
-- [ ] Enhance documentation
-- [ ] Add more blog templates
-- [ ] Implement search functionality
-- [ ] Create theme customizer
-- [ ] Add more product showcase options
-- [ ] Implement caching strategy
-- [ ] Add more shortcodes
-- [ ] Sell.app integration
-- [ ] Create demo content
-- [ ] Write unit tests
+Take a look at this : https://pnyaid.blogspot.com/p/prizayu-roadmap.html
 
 ## 💰 Support Development
 
@@ -147,5 +144,3 @@ Contributions, issues, and feature requests are welcome! Feel free to check the 
 
 Need help? You can:
 - Open an issue on GitHub
-- Contact us at [rizqijune@pm.me]
-- Visit our website [PNYA ID](https://pnya.my.id)
