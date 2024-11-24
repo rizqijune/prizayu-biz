@@ -1,7 +1,7 @@
 /** @type {import("prettier").Options} */
 module.exports = {
   printWidth: 500,
-  tabWidth: 4,
+  tabWidth: 2,
   bracketSpacing: true,
   twigAlwaysBreakObjects: false,
   twigOutputEndblockName: true,

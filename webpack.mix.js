@@ -1,12 +1,12 @@
-let mix = require('laravel-mix');
+const mix = require('laravel-mix')
 
 mix
   .js('src/js/app.js', 'js')
   .js('src/js/app-defer.js', 'js')
   .postCss('src/css/styles.css', 'css/app.css', [
-    require("tailwindcss")
+    require('tailwindcss')
   ])
-  .postCss('src/css/fonts.css','css/fonts.css')
+  .postCss('src/css/fonts.css', 'css/fonts.css')
   .options({
     processCssUrls: false
   })
@@ -19,5 +19,5 @@ mix
     files: [
       'templates/**/*.html.twig',
       'src/**/*.js',
-      'src/**/*.css'    ]
-});
+      'src/**/*.css']
+  })

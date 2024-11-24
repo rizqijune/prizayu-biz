@@ -6,26 +6,25 @@
 </div>
 <hr/>
 <p align="center">✨ <strong>A theme for GravCMS</strong></p>
-<h3 align="center"> <strong> NOTE: Recommended for dev only</h3>
+<h3 align="center"> <strong> NOTE: Recommended only for dev</h3>
 
 <p align="center">
-  <!--a href="https://github.com/feross/standard">
-    <img src="https://img.shields.io/badge/code%20style-standard-purple.svg?style=flat-square" alt="">
-  </a-->
+  <a href="https://github.com/standard/standard">
+    <img src="https://img.shields.io/badge/standardJS-%23F3DF49?style=for-the-badge&logo=standardjs&logoColor=%23000000" alt="Standard" style="border-radius: 9999px">
+  </a>
   <a href="https://opensource.org/licenses/MIT">
-    <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT">
+    <img src="https://img.shields.io/github/license/rizqijune/prizayu-biz?label=license&style=for-the-badge" alt="License: MIT" style="border-radius: 9999px">
   </a>
   <a href="https://getgrav.org">
-    <img src="https://img.shields.io/badge/Made%20for-Grav-blue" alt="Made for Grav">
+    <img src="https://img.shields.io/badge/Grav-white?style=for-the-badge&logo=grav&logoColor=%23221E1F" alt="Made for GravCMS" style="border-radius: 9999px">
   </a>
   <a href="https://tailwindcss.com">
-    <img src="https://img.shields.io/badge/Powered%20by-TailwindCSS-06B6D4" alt="Powered by TailwindCSS">
+    <img src="https://img.shields.io/badge/TailwindCSS-white?style=for-the-badge&logo=tailwindcss&logoColor=%2306B6D4" alt="Powered by TailwindCSS" style="border-radius: 9999px">
   </a>
   <a href="https://alpinejs.dev">
-    <img src="https://img.shields.io/badge/Powered%20by-Alpine.js-2D323E" alt="Alpine.js">
+    <img src="https://img.shields.io/badge/AlpineJS-white?style=for-the-badge&logo=alpinedotjs&logoColor=%238BC0D0" alt="Alpine.js" style="border-radius: 9999px">
   </a>
 </p>
-
 
 # Prizayu Biz Theme 🚀
 
