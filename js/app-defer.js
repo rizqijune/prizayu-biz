@@ -28,35 +28,25 @@ window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_2__["default"];
 alpinejs__WEBPACK_IMPORTED_MODULE_2__["default"].plugin(_alpinejs_focus__WEBPACK_IMPORTED_MODULE_3__["default"]);
 alpinejs__WEBPACK_IMPORTED_MODULE_2__["default"].start();
 var doc = document.documentElement;
-
-// Check if "ui-mode" is stored in localStorage, default to "light" if not
-var currentMode = window.localStorage.getItem("ui-mode") || "light";
-if (currentMode === "dark") {
-  doc.classList.add("dark");
+var currentMode = window.localStorage.getItem('ui-mode') || 'light';
+if (currentMode === 'dark') {
+  doc.classList.add('dark');
 }
-document.addEventListener("DOMContentLoaded", function () {
-  var darkSwitch = document.getElementById("dark-mode");
-  var darkIcon = document.getElementById("dark-icon");
-  var lightIcon = document.getElementById("light-icon");
-
-  // Toggle dark mode when the button is clicked
+document.addEventListener('DOMContentLoaded', function () {
+  var darkSwitch = document.getElementById('dark-mode');
+  var darkIcon = document.getElementById('dark-icon');
+  var lightIcon = document.getElementById('light-icon');
   function toggleDarkMode() {
-    var newMode = doc.classList.contains("dark") ? "light" : "dark";
-    doc.classList.toggle("dark", newMode === "dark");
-    window.localStorage.setItem("ui-mode", newMode);
+    var newMode = doc.classList.contains('dark') ? 'light' : 'dark';
+    doc.classList.toggle('dark', newMode === 'dark');
+    window.localStorage.setItem('ui-mode', newMode);
     updateUI(newMode);
   }
-
-  // Update the UI to reflect the current mode
   function updateUI(mode) {
-    darkIcon.classList.toggle("hidden", mode === "light");
-    lightIcon.classList.toggle("hidden", mode === "dark");
+    darkIcon.classList.toggle('hidden', mode === 'light');
+    lightIcon.classList.toggle('hidden', mode === 'dark');
   }
-
-  // Add event listener for the dark mode switch
-  darkSwitch.addEventListener("click", toggleDarkMode);
-
-  // Initialize UI based on current mode
+  darkSwitch.addEventListener('click', toggleDarkMode);
   updateUI(currentMode);
 });
 
