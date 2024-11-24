@@ -9,8 +9,8 @@
 <h3 align="center"> <strong> NOTE: Recommended for dev only</h3>
 
 <p align="center">
-  <a href="https://github.com/feross/standard">
-    <img src="https://img.shields.io/badge/code%20style-standard-green.svg?style=flat-square" alt="">
+  <a href="https://github.com/feross/custom">
+    <img src="https://img.shields.io/badge/code%20style-standard-purple.svg?style=flat-square" alt="">
   </a>
   <a href="https://opensource.org/licenses/MIT">
     <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT">
