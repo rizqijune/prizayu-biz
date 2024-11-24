@@ -42,7 +42,11 @@
         {{ assets.js()|raw }}
         {% endblock %}
     </head>
-    <body>
+    <body x-data="{ isFooterVisible: false }" x-init="window.addEventListener('scroll', () => {
+    const footer = document.querySelector('.footer');
+    const footerRect = footer.getBoundingClientRect();
+    isFooterVisible = footerRect.top <= window.innerHeight;
+  })">
         {% block header %}
             {% include 'partials/layout/navbar.html.twig' %}
         {% endblock header %}
@@ -50,7 +54,7 @@
         {% block body %}
         {# {% include 'partials/layout/splash.html.twig' %} #}
             <main class="pt-20 antialiased min-h-[80vh]">
-                {# <section class="flex flex-col items-center justify-between max-w-screen-xl px-4 mx-auto "> #}
+                {# <section class=" flex flex-col items-center justify-between max-w-screen-xl px-4 mx-auto"> #}
                     {% block content %}
                     {% endblock content %}
                 {# </section> #}
