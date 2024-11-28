@@ -1,0 +1,10 @@
+<ul class="sm:flex sm:gap-4 items-center hidden">
+	{% for page in pages.children.visible %}
+		{% set current_page = (page.active or page.activeChild) ? 'bg-stone-100 dark:bg-zinc-700' : '' %}
+		<li class="shrink-0">
+			<a href="{{ page.url|e }}" class="underline-offset-2 {{ current_page }} hover-menu rounded-2xl focus:outline-none focus:underline px-3 py-1 font-bold text-black" aria-current="page">
+				{{ page.menu }}
+			</a>
+		</li>
+	{% endfor %}
+</ul>

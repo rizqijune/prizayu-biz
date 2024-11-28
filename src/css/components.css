@@ -15,6 +15,9 @@
 @apply border hover:border-none shadow-md shadow-primary cursor-pointer
 }
 
+.hover-menu {
+  @apply hover:bg-stone-100 dark:hover:bg-zinc-700
+}
 
 /* Markdown notices css */
 .notices {

@@ -19,6 +19,8 @@ package-lock.json
 .pnp.*
 /css/
 /js/
+/css/*.css
+/js/*.js
 /images/
 /fonts/
 /icons/

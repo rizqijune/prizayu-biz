@@ -15,12 +15,12 @@ Alpine.plugin(focus)
 Alpine.start()
 
 const doc = document.documentElement
-
 const currentMode = window.localStorage.getItem('ui-mode') || 'light'
 if (currentMode === 'dark') {
   doc.classList.add('dark')
 }
 
+// Dark mode toggle
 document.addEventListener('DOMContentLoaded', () => {
   const darkSwitch = document.getElementById('dark-mode')
   const darkIcon = document.getElementById('dark-icon')
