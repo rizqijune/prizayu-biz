@@ -41,4 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
   darkSwitch.addEventListener('click', toggleDarkMode)
 
   updateUI(currentMode)
+
+  
 })

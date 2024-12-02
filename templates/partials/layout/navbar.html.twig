@@ -1,3 +1,4 @@
+<header>
 <nav
 	x-data="{ isVisible: true, lastScrollY: 0, search: false }" @scroll.window="if (window.scrollY > lastScrollY && window.scrollY > 100) { isVisible = false } else { isVisible = true; } lastScrollY = window.scrollY" :class="{'translate-y-0': isVisible, '-translate-y-full': !isVisible}" class="bg-opacity-80 backdrop-blur-md fixed top-0 left-0 z-20 flex items-center justify-between w-full p-4 transition-transform duration-300 ease-in-out bg-white" aria-label="menu">
 	{# Allows screen readers to skip the the nav and go directly to the main content. #}
@@ -108,3 +109,4 @@
 <div>
 	{% include "/partials/components/breadcrumb.html.twig" %}
 </div>
+</header>
