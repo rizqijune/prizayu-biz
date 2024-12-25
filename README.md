@@ -41,7 +41,7 @@ A modern, fast, and customizable theme for startups and small businesses.
 
 > [!CAUTION]
 >
-> The alpha phase will remain free! so fork  this while its still in public repo.  After released, this repo will only contain production build. The dev build will be available for donator.
+> The V2 is an experimental build, including breaking change. In this build we are upgrading the package to the latest version and adapting to it
 
 ## ✨ Features
 
