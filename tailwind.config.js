@@ -32,6 +32,8 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/typography'),
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/aspect-ratio'),
     require('./moz-blur-support'),
     require('tailwind-bootstrap-grid')({
       gridGutters: {

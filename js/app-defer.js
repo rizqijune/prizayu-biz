@@ -32,6 +32,8 @@ var currentMode = window.localStorage.getItem('ui-mode') || 'light';
 if (currentMode === 'dark') {
   doc.classList.add('dark');
 }
+
+// Dark mode toggle
 document.addEventListener('DOMContentLoaded', function () {
   var darkSwitch = document.getElementById('dark-mode');
   var darkIcon = document.getElementById('dark-icon');
